@@ -1,0 +1,490 @@
+/* Colores corporativos */
+:root {
+  --color-principal: #9d1c66;
+  --color-secundario: #000000;
+  --color-blanco: #ffffff;
+  --color-whatsapp: #25D366;
+  --color-fondo-claro: #eebbbb;
+}
+
+body {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Evitar scroll horizontal global */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Asegurar que el Hero no desborde */
+.hero-bg {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Asegurar que ocupe todo el alto */
+#heroCarousel, 
+#heroCarousel .carousel-item {
+  height: 100vh;
+}
+
+#heroCarousel, #heroCarousel .carousel-item{
+  height: 100svh; /* soportado en navegadores modernos */
+}
+
+#heroCarousel .carousel-item .btn{
+  font-size: 1.2rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 8px;
+}
+
+#heroCarousel img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.carousel-caption {
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-weight: bold;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.btn-whatsapp {
+  background-color: var(--color-whatsapp);
+  border-color: var(--color-whatsapp);
+  font-weight: bold;
+  color: #000000;
+}
+
+.service-card .service-btn{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #5f9ac6;
+  border-color: #5f9ac6;
+  color: #000000;
+}
+
+.service-card .service-btn-basico{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #d98d4e;
+  border-color: #d98d4e;
+  color: #000000;
+}
+
+.service-card .service-btn-avanzado{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #c0c0c0;
+  border-color: #c0c0c0;
+  color: #000000;
+}
+
+.service-card .service-btn-ejecutivo{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #7a6200;
+  border-color: #7a6200;
+  color: #000000;
+}
+
+.btn-primary:hover {
+  background-color: #7a154f;
+  border-color: #7a154f;
+}
+
+.btn-whatsapp:hover {
+  background-color: green;
+  border-color: green;
+}
+
+.service-card .service-btn:hover{
+  background-color: #a0b2ce;
+  border-color: #a0b2ce;
+}
+
+.service-card .service-btn-basico:hover{
+  background-color: #eea905;
+  border-color: #eea905;
+}
+
+.service-card .service-btn-avanzado:hover{
+  background-color: #b4b4b4;
+  border-color: #b4b4b4;
+}
+
+.service-card .service-btn-ejecutivo:hover{
+  background-color: goldenrod;
+  border-color: goldenrod;
+}
+
+@keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+  }
+/* Se aplica la animación a la burbuja */
+.whatsapp-bubble {
+    animation: bounce 0.5s ease-in-out 2;
+    /* Resto del estilo de la burbuja */
+  }
+
+  /* Que el botón del hero se ajuste al texto */
+.carousel-caption .btn {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: unset !important;
+  max-width: 400px;
+  white-space: nowrap; /* evita saltos de línea */
+  text-align: center;
+}
+
+.ratio.rounded { border: 1px solid rgba(0,0,0,.06); }
+
+.bg-claro{
+  background-color: var(--color-fondo-claro);
+}
+
+/* Cards de Servicios */
+#services .card {
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover con borde en gradiente */
+#services .card:hover {
+  border-color: transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(45deg, #c81e82, #f06caa) border-box;
+  box-shadow: 0 6px 15px rgba(200,30,130,0.25);
+  transform: translateY(-5px);
+}
+/* Icono superior en cada card */
+.service-icon{
+  width: 88px;              /* 72–96px funciona bien */
+  height: 88px;
+  object-fit: contain;      /* no se deforma */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.08));
+}
+
+/* Hover bonito (opcional, combina con tu efecto de borde) */
+.service-card{
+  border-radius: 12px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.service-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+}
+/* Destacado (Más vendido) */
+.service-card.featured {
+  position: relative;
+  border: 2px solid #c81e82; /* magenta corporativo */
+  box-shadow: 0 14px 30px rgba(200, 30, 130, 0.18);
+  transform: translateY(-4px);
+}
+
+.service-card.featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(200, 30, 130, 0.24);
+}
+
+/* Badge superior */
+.badge-featured {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, #c81e82, #f06caa);
+  color: #fff;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .3px;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(200, 30, 130, .35);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+/* Pequeño halo en el borde (sutil) */
+.service-card.featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  box-shadow: 0 0 0 4px rgba(200,30,130,.08) inset;
+}
+
+/* (Opcional) pulso suave del badge para llamar atención */
+@keyframes pulseSV {
+  0%   { transform: translateX(-50%) scale(1);   }
+  50%  { transform: translateX(-50%) scale(1.04);}
+  100% { transform: translateX(-50%) scale(1);   }
+}
+.badge-featured { animation: pulseSV 2.4s ease-in-out infinite; }
+/* Lista de características (checklist) */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  color: #444;
+  max-width: 220px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.feature-list i {
+  color: #c81e82; /* Magenta corporativo */
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+/* Chips de pasarelas de pago */
+.pay-badge{
+  background:#f5f5f5; 
+  border:1px solid #e0e0e0;
+  border-radius:999px;
+  padding:.2rem .5rem;
+  font-size:.75rem; 
+  line-height:1;
+  color:#333;
+}
+/* Nosotros */
+#nosotros h2 { text-align: left; }
+@media (max-width: 991.98px){
+  #nosotros h2, #nosotros p { text-align: center; }
+}
+
+/* Stats */
+.stat{
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+}
+.stat-number{
+  display: block;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--color-principal, #9d1c66);
+  line-height: 1;
+}
+.stat-label{
+  display: block;
+  font-size: .85rem;
+  color: #666;
+}
+
+/* Imagen */
+.nosotros-img-wrap{
+  max-width: 520px;             /* controla el ancho máximo en desktop */
+}
+
+/* === DIRECTORIO === */
+#directorio h2 {
+  font-weight: 700;
+  color: #222;
+}
+
+.directorio-card {
+  max-width: 340px;
+  margin-inline: auto;
+  border: none;
+  border-radius: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.directorio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.directorio-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#directorio p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+#directorio .btn {
+  font-size: 0.85rem;
+  border-radius: 50px;
+  padding: 0.4rem 1.2rem;
+}
+
+/* Responsivo */
+@media (max-width: 767px) {
+  #directorio .directorio-card {
+    max-width: 300px;
+  }
+}
+
+.directorio-logo{
+  width: 120px;      /* o 150 si así lo quieres */
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;    /* centra aunque cambie el context */
+  border: 4px solid #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.1);
+}
+/* === BLOG === */
+#blog {
+  background-color: #fff;
+}
+
+.blog-img {
+  max-width: 90%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.blog-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.blog-text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.blog-btn {
+  background-color: var(--color-principal, #9d1c66);
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+}
+.blog-btn:hover {
+  background-color: #7c1552;
+}
+/* Testimonios */
+.t-card { border-radius: 16px; }
+.t-avatar{
+  width: 96px; height: 96px; object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+.t-quote{
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+}
+#testimonios .carousel-indicators [data-bs-target]{
+  width: 10px; height: 10px; border-radius: 50%;
+  background-color: #c81e82; /* magenta */
+}
+#testimonios .carousel-control-prev-icon,
+#testimonios .carousel-control-next-icon { filter: invert(1) grayscale(1); }
+/* ---- Contacto ---- */
+.contact-card { border: 0; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+
+#contacto .form-control-lg{
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04) inset;
+}
+#contacto .form-control-lg:focus{
+  border-color: #c81e82;
+  box-shadow: 0 0 0 .25rem rgba(200,30,130,.15);
+}
+
+.btn-contact{
+  background: linear-gradient(90deg,#c81e82,#9d1c66);
+  color:#fff; font-weight:700; border:0; border-radius:12px;
+  padding:.8rem 1.2rem; transition: transform .2s ease, opacity .2s ease;
+}
+.btn-contact:hover{ transform: translateY(-1px); opacity:.95; color:#fff; }
+
+.contact-list li{
+  display:flex; gap:.75rem; margin-bottom:.9rem; align-items:flex-start;
+}
+.icon-badge{
+  width:36px; height:36px; border-radius:50%;
+  display:inline-grid; place-items:center;
+  background:#f7e3ee; color:#c81e82; flex-shrink:0;
+  box-shadow: 0 2px 6px rgba(200,30,130,.15);
+}
+.contact-list a{ text-decoration:none; color:#4a4a4a; }
+.contact-list a:hover{ color:#c81e82; }
+
+.map-embed{ border:0; }
+/* ===== Footer ===== */
+#site-footer{ background:#1e2225; color:#dfe3e6; }
+#site-footer .footer-title{
+  text-transform: uppercase; letter-spacing:.06em;
+  font-weight: 800; font-size:.85rem; margin-bottom:.75rem; color:#ffffff;
+}
+#site-footer .footer-text{ color:#c9cfd4; }
+#site-footer .footer-links a{
+  display:block; padding:.25rem 0; color:#c9cfd4; text-decoration:none;
+}
+#site-footer .footer-links a:hover{ color:#f5b6d3; }
+#site-footer .footer-contact li{ margin-bottom:.4rem; }
+#site-footer .footer-contact i{ color:#f5b6d3; margin-right:.45rem; }
+#site-footer .footer-social a{
+  display:inline-flex; width:36px; height:36px; border-radius:50%;
+  align-items:center; justify-content:center; margin-right:.35rem;
+  background:#2a2f33; color:#fff; text-decoration:none; transition:.2s ease;
+}
+#site-footer .footer-social a:hover{ background:#c81e82; }
+#site-footer .btn-outline-light{
+  border-color:#9aa3a9; color:#e7edf1;
+}
+#site-footer .btn-outline-light:hover{ background:#c81e82; border-color:#c81e82; }
+
+#site-footer .footer-divider{ border-color: rgba(255,255,255,.08); }
+#site-footer .nav-link{ color:#c9cfd4; }
+#site-footer .nav-link:hover{ color:#f5b6d3; }
+
+/* Pequeños ajustes responsivos */
+@media (max-width: 576px){
+  #site-footer img[alt="SuperVolante"]{ height:32px; }
+}
+a:focus-visible, button:focus-visible, .btn:focus-visible{
+  outline: 3px solid #c81e82;
+  outline-offset: 2px;
+}
+a:focus-visible, button:focus-visible, .btn:focus-visible{
+  outline: 3px solid #c81e82; outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce){
+  .whatsapp-bubble{ animation:none; }
+}
