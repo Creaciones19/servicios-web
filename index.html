@@ -16,7 +16,7 @@
 
 <!-- AOS CSS (para animaciones data-aos) -->
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-<link rel="stylesheet" href="style.css">
+
 
 
   <title>Tarjeta Digital | Urban Threads</title>
@@ -477,8 +477,17 @@ section{ position:relative; }
   box-shadow: 0 18px 36px rgba(0,0,0,.22);
   filter: brightness(.98);
 }
+/* Se aplica la animación a la burbuja */
+.whatsapp-bubble {
+    animation: bounce 0.5s ease-in-out 2;
+    /* Resto del estilo de la burbuja */
+  }
+  @media (prefers-reduced-motion: reduce){
+  .whatsapp-bubble{ animation:none; }
+}
 
 /* ===== Label “Envía un Mensaje” ===== */
+
 .whatsapp-label{
   position: fixed;
   right: 18px;
@@ -555,7 +564,7 @@ section{ position:relative; }
 /* ===== Logo del footer (tamaño controlado) ===== */
 /* ===== Logo del footer (tamaño correcto y balanceado) ===== */
 .footer-logo{
-  height: 100px;        /* 👈 tamaño ideal desktop */
+  height: 130px;        /* 👈 desktop un poco más grande */
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
@@ -564,7 +573,7 @@ section{ position:relative; }
 /* Tablet */
 @media (max-width: 992px){
   .footer-logo{
-    height: 60px;
+    height: 70px;
   }
 }
 

@@ -475,16 +475,42 @@ html, body {
 #site-footer .nav-link:hover{ color:#f5b6d3; }
 
 /* Pequeños ajustes responsivos */
+
+/* ===== LOGO SOLO EN FOOTER (más grande y consistente) ===== */
+#site-footer img[alt="SuperVolante"]{
+  height: clamp(84px, 6.2vw, 120px); /* 🔥 aprox el doble */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile: más grande y legible */
 @media (max-width: 576px){
-  #site-footer img[alt="SuperVolante"]{ height:32px; }
+  #site-footer img[alt="SuperVolante"]{
+    height: 96px; /* si lo quieres aún más grande: 110px */
+  }
 }
-a:focus-visible, button:focus-visible, .btn:focus-visible{
-  outline: 3px solid #c81e82;
-  outline-offset: 2px;
-}
+/* ================================
+   ACCESIBILIDAD · FOCO VISIBLE
+   ================================
+   Muestra un contorno visible cuando:
+   - Se navega con teclado (TAB)
+   - Se enfoca un enlace, botón o .btn
+   Mejora accesibilidad y usabilidad
+*/
+
 a:focus-visible, button:focus-visible, .btn:focus-visible{
   outline: 3px solid #c81e82; outline-offset: 2px;
 }
+/* ================================
+   ACCESIBILIDAD · MOVIMIENTO REDUCIDO
+   ================================
+   Respeta la preferencia del sistema
+   "Reducir movimiento"
+   - Desactiva animaciones
+   - Evita mareos o distracciones
+*/
 @media (prefers-reduced-motion: reduce){
   .whatsapp-bubble{ animation:none; }
 }
