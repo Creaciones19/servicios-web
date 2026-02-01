@@ -78,7 +78,13 @@ html, body {
   white-space: nowrap; /* evita saltos de línea */
   text-align: center;
 }
-
+/* Texto debajo del H1 en el hero / carrusel */
+.carousel-caption .lead{
+  color: #ffffff;              /* blanco puro */
+  font-size: 1.5rem;           /* más grande */
+  font-weight: 500;
+  text-shadow: 0 4px 12px rgba(0,0,0,.6); /* contraste real */
+}
 /* =========================================================
    3) NAVBAR
    (Ajustes de marca/estilo del menú superior)
