@@ -1,4 +1,7 @@
-/* Colores corporativos */
+/* =========================================================
+   0) VARIABLES · COLORES CORPORATIVOS
+   (Aquí cambias la paleta global del sitio)
+   ========================================================= */
 :root {
   --color-principal: #9d1c66;
   --color-secundario: #000000;
@@ -7,6 +10,10 @@
   --color-fondo-claro: #eebbbb;
 }
 
+/* =========================================================
+   1) BASE GLOBAL · TIPOGRAFÍA + ANTI-SCROLL HORIZONTAL
+   (Ajustes generales del documento)
+   ========================================================= */
 body {
   font-family: 'Libre Franklin', sans-serif;
 }
@@ -16,6 +23,11 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+/* =========================================================
+   2) HERO / CAROUSEL · ALTURA, IMAGENES, CAPTION Y BOTÓN
+   (Todo lo que controla el carrusel principal)
+   ========================================================= */
 
 /* Asegurar que el Hero no desborde */
 .hero-bg {
@@ -29,7 +41,8 @@ html, body {
   height: 100vh;
 }
 
-#heroCarousel, #heroCarousel .carousel-item{
+#heroCarousel, 
+#heroCarousel .carousel-item{
   height: 100svh; /* soportado en navegadores modernos */
 }
 
@@ -44,110 +57,19 @@ html, body {
   height: 100%;
 }
 
+/* =========================================================
+   HERO · QUITAR SOLO LA "VENTANA" OSCURA
+   (NO afecta texto, botón ni centrado)
+   ========================================================= */
 .carousel-caption {
-  background: rgba(0,0,0,0.4);
-  padding: 20px;
-  border-radius: 10px;
+  background: transparent;   /* ❌ quita la ventana */
+  padding: 0;                /* ❌ quita el bloque */
+  border-radius: 0;          /* ❌ quita bordes */
+
+  /* TODO LO DEMÁS SE MANTIENE */
 }
 
-/* Navbar */
-.navbar-brand {
-  font-weight: bold;
-}
-
-/* Botones */
-.btn-primary {
-  background-color: var(--color-principal);
-  border-color: var(--color-principal);
-}
-
-.btn-whatsapp {
-  background-color: var(--color-whatsapp);
-  border-color: var(--color-whatsapp);
-  font-weight: bold;
-  color: #000000;
-}
-
-.service-card .service-btn{
-  border-radius: 8px;
-  padding: .5rem 1rem;
-  background-color: #5f9ac6;
-  border-color: #5f9ac6;
-  color: #000000;
-}
-
-.service-card .service-btn-basico{
-  border-radius: 8px;
-  padding: .5rem 1rem;
-  background-color: #d98d4e;
-  border-color: #d98d4e;
-  color: #000000;
-}
-
-.service-card .service-btn-avanzado{
-  border-radius: 8px;
-  padding: .5rem 1rem;
-  background-color: #c0c0c0;
-  border-color: #c0c0c0;
-  color: #000000;
-}
-
-.service-card .service-btn-ejecutivo{
-  border-radius: 8px;
-  padding: .5rem 1rem;
-  background-color: #7a6200;
-  border-color: #7a6200;
-  color: #000000;
-}
-
-.btn-primary:hover {
-  background-color: #7a154f;
-  border-color: #7a154f;
-}
-
-.btn-whatsapp:hover {
-  background-color: green;
-  border-color: green;
-}
-
-.service-card .service-btn:hover{
-  background-color: #a0b2ce;
-  border-color: #a0b2ce;
-}
-
-.service-card .service-btn-basico:hover{
-  background-color: #eea905;
-  border-color: #eea905;
-}
-
-.service-card .service-btn-avanzado:hover{
-  background-color: #b4b4b4;
-  border-color: #b4b4b4;
-}
-
-.service-card .service-btn-ejecutivo:hover{
-  background-color: goldenrod;
-  border-color: goldenrod;
-}
-
-@keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
-    25% {
-      transform: translateY(-10px);
-    }
-    50% {
-      transform: translateY(0);
-    }
-  }
-/* Se aplica la animación a la burbuja */
-.whatsapp-bubble {
-    animation: bounce 0.5s ease-in-out 2;
-    /* Resto del estilo de la burbuja */
-  }
-
-  /* Que el botón del hero se ajuste al texto */
+/* Que el botón del hero se ajuste al texto */
 .carousel-caption .btn {
   display: inline-block !important;
   width: auto !important;
@@ -157,11 +79,120 @@ html, body {
   text-align: center;
 }
 
+/* =========================================================
+   3) NAVBAR
+   (Ajustes de marca/estilo del menú superior)
+   ========================================================= */
+.navbar-brand {
+  font-weight: bold;
+}
+
+/* =========================================================
+   4) BOTONES · PRINCIPAL, WHATSAPP Y BOTONES DE SERVICIOS
+   (Estilos base + hover)
+   ========================================================= */
+
+/* Botón principal */
+.btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+.btn-primary:hover {
+  background-color: #7a154f;
+  border-color: #7a154f;
+}
+
+/* Botón WhatsApp */
+.btn-whatsapp {
+  background-color: var(--color-whatsapp);
+  border-color: var(--color-whatsapp);
+  font-weight: bold;
+  color: #000000;
+}
+.btn-whatsapp:hover {
+  background-color: green;
+  border-color: green;
+}
+
+/* Botones dentro de cards de servicios */
+.service-card .service-btn{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #5f9ac6;
+  border-color: #5f9ac6;
+  color: #000000;
+}
+.service-card .service-btn:hover{
+  background-color: #a0b2ce;
+  border-color: #a0b2ce;
+}
+
+.service-card .service-btn-basico{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #d98d4e;
+  border-color: #d98d4e;
+  color: #000000;
+}
+.service-card .service-btn-basico:hover{
+  background-color: #eea905;
+  border-color: #eea905;
+}
+
+.service-card .service-btn-avanzado{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #c0c0c0;
+  border-color: #c0c0c0;
+  color: #000000;
+}
+.service-card .service-btn-avanzado:hover{
+  background-color: #b4b4b4;
+  border-color: #b4b4b4;
+}
+
+.service-card .service-btn-ejecutivo{
+  border-radius: 8px;
+  padding: .5rem 1rem;
+  background-color: #7a6200;
+  border-color: #7a6200;
+  color: #000000;
+}
+.service-card .service-btn-ejecutivo:hover{
+  background-color: goldenrod;
+  border-color: goldenrod;
+}
+
+/* =========================================================
+   5) WHATSAPP FLOTANTE · ANIMACIÓN “BOUNCE”
+   (Solo controla el rebote del botón flotante)
+   ========================================================= */
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  25%  { transform: translateY(-10px); }
+  50%  { transform: translateY(0); }
+}
+
+/* Se aplica la animación a la burbuja */
+.whatsapp-bubble {
+  animation: bounce 0.5s ease-in-out 2;
+  /* Resto del estilo de la burbuja */
+}
+
+/* =========================================================
+   6) UTILIDADES / CLASES SUELTAS
+   (Pequeños helpers que reutilizas en varias partes)
+   ========================================================= */
 .ratio.rounded { border: 1px solid rgba(0,0,0,.06); }
 
 .bg-claro{
   background-color: var(--color-fondo-claro);
 }
+
+/* =========================================================
+   7) SERVICIOS · CARDS + ICONO + DESTACADO (MÁS VENDIDO)
+   (Todo lo que afecta a la sección de servicios)
+   ========================================================= */
 
 /* Cards de Servicios */
 #services .card {
@@ -179,6 +210,7 @@ html, body {
   box-shadow: 0 6px 15px rgba(200,30,130,0.25);
   transform: translateY(-5px);
 }
+
 /* Icono superior en cada card */
 .service-icon{
   width: 88px;              /* 72–96px funciona bien */
@@ -196,6 +228,7 @@ html, body {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0,0,0,.15);
 }
+
 /* Destacado (Más vendido) */
 .service-card.featured {
   position: relative;
@@ -203,7 +236,6 @@ html, body {
   box-shadow: 0 14px 30px rgba(200, 30, 130, 0.18);
   transform: translateY(-4px);
 }
-
 .service-card.featured:hover {
   transform: translateY(-6px);
   box-shadow: 0 18px 36px rgba(200, 30, 130, 0.24);
@@ -239,11 +271,12 @@ html, body {
 
 /* (Opcional) pulso suave del badge para llamar atención */
 @keyframes pulseSV {
-  0%   { transform: translateX(-50%) scale(1);   }
-  50%  { transform: translateX(-50%) scale(1.04);}
-  100% { transform: translateX(-50%) scale(1);   }
+  0%   { transform: translateX(-50%) scale(1); }
+  50%  { transform: translateX(-50%) scale(1.04); }
+  100% { transform: translateX(-50%) scale(1); }
 }
 .badge-featured { animation: pulseSV 2.4s ease-in-out infinite; }
+
 /* Lista de características (checklist) */
 .feature-list {
   list-style: none;
@@ -252,19 +285,18 @@ html, body {
   color: #444;
   max-width: 220px;
 }
-
 .feature-list li {
   display: flex;
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 0.4rem;
 }
-
 .feature-list i {
   color: #c81e82; /* Magenta corporativo */
   font-size: 1rem;
   flex-shrink: 0;
 }
+
 /* Chips de pasarelas de pago */
 .pay-badge{
   background:#f5f5f5; 
@@ -275,13 +307,25 @@ html, body {
   line-height:1;
   color:#333;
 }
-/* Nosotros */
+
+/* =========================================================
+   8) NOSOTROS · TEXTO + IMAGEN + RESPONSIVE
+   (Alineaciones de la sección "Nosotros")
+   ========================================================= */
 #nosotros h2 { text-align: left; }
 @media (max-width: 991.98px){
   #nosotros h2, #nosotros p { text-align: center; }
 }
 
-/* Stats */
+/* Imagen */
+.nosotros-img-wrap{
+  max-width: 520px; /* controla el ancho máximo en desktop */
+}
+
+/* =========================================================
+   9) STATS (CONTADORES / METRICAS)
+   (Bloques tipo KPI)
+   ========================================================= */
 .stat{
   background: #fff;
   border: 1px solid #eee;
@@ -303,12 +347,10 @@ html, body {
   color: #666;
 }
 
-/* Imagen */
-.nosotros-img-wrap{
-  max-width: 520px;             /* controla el ancho máximo en desktop */
-}
-
-/* === DIRECTORIO === */
+/* =========================================================
+   10) DIRECTORIO · CARDS + LOGO + RESPONSIVE
+   (Sección de directorio)
+   ========================================================= */
 #directorio h2 {
   font-weight: 700;
   color: #222;
@@ -321,7 +363,6 @@ html, body {
   border-radius: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 .directorio-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -353,6 +394,8 @@ html, body {
   }
 }
 
+/* (Repetido a propósito en tu CSS original: lo dejo igual, solo reubicado)
+   Si quieres, luego lo unificamos, pero ahorita NO toqué estructura. */
 .directorio-logo{
   width: 120px;      /* o 150 si así lo quieres */
   height: 120px;
@@ -362,7 +405,11 @@ html, body {
   border: 4px solid #fff;
   box-shadow: 0 3px 8px rgba(0,0,0,.1);
 }
-/* === BLOG === */
+
+/* =========================================================
+   11) BLOG · IMAGEN + TEXTO + BOTÓN
+   (Sección de blog)
+   ========================================================= */
 #blog {
   background-color: #fff;
 }
@@ -393,27 +440,49 @@ html, body {
 .blog-btn:hover {
   background-color: #7c1552;
 }
-/* Testimonios */
+
+/* =========================================================
+   12) TESTIMONIOS · CARD + AVATAR + CAROUSEL
+   (Sección de testimonios)
+   ========================================================= */
 .t-card { border-radius: 16px; }
+
 .t-avatar{
-  width: 96px; height: 96px; object-fit: cover;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
   border-radius: 50%;
   border: 4px solid #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,.12);
 }
+
 .t-quote{
   font-size: 1.05rem;
   line-height: 1.6;
   color: #333;
 }
+
 #testimonios .carousel-indicators [data-bs-target]{
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background-color: #c81e82; /* magenta */
 }
+
 #testimonios .carousel-control-prev-icon,
-#testimonios .carousel-control-next-icon { filter: invert(1) grayscale(1); }
-/* ---- Contacto ---- */
-.contact-card { border: 0; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+#testimonios .carousel-control-next-icon { 
+  filter: invert(1) grayscale(1);
+}
+
+/* =========================================================
+   13) CONTACTO · FORMULARIO + BOTÓN + LISTA + MAPA
+   (Sección de contacto completa)
+   ========================================================= */
+.contact-card { 
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
 
 #contacto .form-control-lg{
   border-radius: 12px;
@@ -428,57 +497,107 @@ html, body {
 
 .btn-contact{
   background: linear-gradient(90deg,#c81e82,#9d1c66);
-  color:#fff; font-weight:700; border:0; border-radius:12px;
-  padding:.8rem 1.2rem; transition: transform .2s ease, opacity .2s ease;
+  color:#fff;
+  font-weight:700;
+  border:0;
+  border-radius:12px;
+  padding:.8rem 1.2rem;
+  transition: transform .2s ease, opacity .2s ease;
 }
-.btn-contact:hover{ transform: translateY(-1px); opacity:.95; color:#fff; }
+.btn-contact:hover{
+  transform: translateY(-1px);
+  opacity:.95;
+  color:#fff;
+}
 
 .contact-list li{
-  display:flex; gap:.75rem; margin-bottom:.9rem; align-items:flex-start;
+  display:flex;
+  gap:.75rem;
+  margin-bottom:.9rem;
+  align-items:flex-start;
 }
+
 .icon-badge{
-  width:36px; height:36px; border-radius:50%;
-  display:inline-grid; place-items:center;
-  background:#f7e3ee; color:#c81e82; flex-shrink:0;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  display:inline-grid;
+  place-items:center;
+  background:#f7e3ee;
+  color:#c81e82;
+  flex-shrink:0;
   box-shadow: 0 2px 6px rgba(200,30,130,.15);
 }
-.contact-list a{ text-decoration:none; color:#4a4a4a; }
-.contact-list a:hover{ color:#c81e82; }
+
+.contact-list a{
+  text-decoration:none;
+  color:#4a4a4a;
+}
+.contact-list a:hover{
+  color:#c81e82;
+}
 
 .map-embed{ border:0; }
-/* ===== Footer ===== */
+
+/* =========================================================
+   14) FOOTER · ESTILOS + LOGO SOLO FOOTER + RESPONSIVE
+   (Todo lo del pie de página)
+   ========================================================= */
 #site-footer{ background:#1e2225; color:#dfe3e6; }
+
 #site-footer .footer-title{
-  text-transform: uppercase; letter-spacing:.06em;
-  font-weight: 800; font-size:.85rem; margin-bottom:.75rem; color:#ffffff;
+  text-transform: uppercase;
+  letter-spacing:.06em;
+  font-weight: 800;
+  font-size:.85rem;
+  margin-bottom:.75rem;
+  color:#ffffff;
 }
+
 #site-footer .footer-text{ color:#c9cfd4; }
+
 #site-footer .footer-links a{
-  display:block; padding:.25rem 0; color:#c9cfd4; text-decoration:none;
+  display:block;
+  padding:.25rem 0;
+  color:#c9cfd4;
+  text-decoration:none;
 }
 #site-footer .footer-links a:hover{ color:#f5b6d3; }
+
 #site-footer .footer-contact li{ margin-bottom:.4rem; }
 #site-footer .footer-contact i{ color:#f5b6d3; margin-right:.45rem; }
+
 #site-footer .footer-social a{
-  display:inline-flex; width:36px; height:36px; border-radius:50%;
-  align-items:center; justify-content:center; margin-right:.35rem;
-  background:#2a2f33; color:#fff; text-decoration:none; transition:.2s ease;
+  display:inline-flex;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  margin-right:.35rem;
+  background:#2a2f33;
+  color:#fff;
+  text-decoration:none;
+  transition:.2s ease;
 }
 #site-footer .footer-social a:hover{ background:#c81e82; }
+
 #site-footer .btn-outline-light{
-  border-color:#9aa3a9; color:#e7edf1;
+  border-color:#9aa3a9;
+  color:#e7edf1;
 }
-#site-footer .btn-outline-light:hover{ background:#c81e82; border-color:#c81e82; }
+#site-footer .btn-outline-light:hover{
+  background:#c81e82;
+  border-color:#c81e82;
+}
 
 #site-footer .footer-divider{ border-color: rgba(255,255,255,.08); }
 #site-footer .nav-link{ color:#c9cfd4; }
 #site-footer .nav-link:hover{ color:#f5b6d3; }
 
-/* Pequeños ajustes responsivos */
-
-/* ===== LOGO SOLO EN FOOTER (más grande y consistente) ===== */
+/* LOGO SOLO EN FOOTER (más grande y consistente) */
 #site-footer img[alt="SuperVolante"]{
-  height: clamp(84px, 6.2vw, 120px); /* 🔥 aprox el doble */
+  height: clamp(84px, 6.2vw, 120px); /* aprox el doble */
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -491,26 +610,22 @@ html, body {
     height: 96px; /* si lo quieres aún más grande: 110px */
   }
 }
-/* ================================
-   ACCESIBILIDAD · FOCO VISIBLE
-   ================================
-   Muestra un contorno visible cuando:
-   - Se navega con teclado (TAB)
-   - Se enfoca un enlace, botón o .btn
-   Mejora accesibilidad y usabilidad
-*/
 
-a:focus-visible, button:focus-visible, .btn:focus-visible{
-  outline: 3px solid #c81e82; outline-offset: 2px;
+/* =========================================================
+   15) ACCESIBILIDAD · FOCO VISIBLE
+   (Outline al navegar con teclado)
+   ========================================================= */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible{
+  outline: 3px solid #c81e82;
+  outline-offset: 2px;
 }
-/* ================================
-   ACCESIBILIDAD · MOVIMIENTO REDUCIDO
-   ================================
-   Respeta la preferencia del sistema
-   "Reducir movimiento"
-   - Desactiva animaciones
-   - Evita mareos o distracciones
-*/
+
+/* =========================================================
+   16) ACCESIBILIDAD · MOVIMIENTO REDUCIDO
+   (Respeta “prefers-reduced-motion”)
+   ========================================================= */
 @media (prefers-reduced-motion: reduce){
   .whatsapp-bubble{ animation:none; }
 }
