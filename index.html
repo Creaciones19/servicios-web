@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 <!-- Bootstrap CSS (OBLIGATORIO) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -669,29 +670,105 @@ section{ position:relative; }
 .navbar ul{ list-style:none; padding-left:0; margin:0; }
 .navbar a{ color: inherit; }
 
+
+/* aqui inicia todo lo del astronauta y el contactar que flota */
+/* BOTÓN WHATSAPP */
+/* BOTÓN WHATSAPP */
+.whatsapp-bubble {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 22px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TEXTO AL LADO (ASESOR) */
+.whatsapp-tag {
+  position: absolute;
+  right: 55px;
+  background: #25D366;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
+  box-shadow: #25D366;
+}
+
+/* PIQUITO */
+.whatsapp-tag::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: #25D366;
+}
+
+/* ASTRONAUTA */
+.astro-container {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  z-index: 999;
+}
+
+.astro {
+  width: 90px;
+  height: 90px;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.astro lottie-player {
+  width: 100%;
+  height: 100%;
+}
+
+/* FLOTAR */
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
 </style>
 
 
-</head>
-<body>
-   <a href="https://wa.me/523343340062?text=Me%20interesa%20sus%20servicios"
+<!-- BOTÓN WHATSAPP -->
+<a href="https://wa.me/523343340062?text=Me%20interesa%20sus%20servicios"
    class="whatsapp-bubble"
-   title="Enviar mensaje a través de WhatsApp"
-   target="_blank"
-   rel="noopener noreferrer">
-  <i class="fab fa-whatsapp fa-1x"></i>
+   target="_blank">
+
+  <i class="fab fa-whatsapp"></i>
+
+  <span class="whatsapp-tag">Asesor disponible</span>
+
 </a>
 
-  <span class="whatsapp-label">Envía un Mensaje</span>
-   
-    <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark  bg-dark shadow-sm">
-    <div class="container">
-     <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-  <img src="LOGO.png" alt="SuperVolante" class="logo-header me-2">
-  Micro-Sitios
-</a>
 
+<!-- ASTRONAUTA -->
+<div class="astro-container">
+  <div class="astro">
+    <lottie-player 
+      src="sapace.json"  
+      background="transparent"  
+      speed="1"  
+      loop autoplay>
+    </lottie-player>
+  </div>
+</div>
+⚠️ IMPORTAN
+
+</div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -1153,16 +1230,28 @@ document.getElementById("demoBox").addEventListener("click", function() {
 </section>
 
 
-  <!-- Blog -->
+ <!-- Blog -->
 <section id="blog" class="py-5 bg-white">
   <div class="container" data-aos="fade-up">
     <div class="row align-items-center g-4">
       
       <!-- Imagen -->
       <div class="col-lg-6 text-center">
+
+        <!-- 
         <img src="imagenes (6).jpg" 
              alt="Landing Pages para emprendedores" 
-             class="img-fluid rounded shadow-sm blog-img" loading="lazy" decoding="async">
+             class="img-fluid rounded shadow-sm blog-img" 
+             loading="lazy" decoding="async">
+        -->
+
+        <div class="img-fluid rounded shadow-sm blog-img d-flex justify-content-center align-items-center"
+             style="aspect-ratio: 1 / 1; overflow: hidden;">
+
+          <div id="animacionVideo" style="width:100%; height:100%;"></div>
+
+        </div>
+
       </div>
 
       <!-- Texto -->
@@ -1181,11 +1270,41 @@ document.getElementById("demoBox").addEventListener("click", function() {
           <a href="#" class="btn btn-primary blog-btn">Seguir leyendo →</a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- Lottie (una sola vez en toda la página, antes de </body>) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  let cargado = false;
+  const contenedor = document.getElementById("animacionVideo");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !cargado) {
+
+        lottie.loadAnimation({
+          container: contenedor,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "video.json"
+        });
+
+        cargado = true;
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(contenedor);
+
+});
+</script>
   <!-- Testimonios -->
 <section id="testimonios" class="py-5 bg-light">
   <div class="container" data-aos="fade-up">
