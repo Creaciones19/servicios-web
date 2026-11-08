@@ -1,0 +1,1764 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<!-- Bootstrap CSS (OBLIGATORIO) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons (para <i class="bi ..."> ) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Font Awesome (para <i class="fab fa-whatsapp"> ) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- AOS CSS (para animaciones data-aos) -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" sizes="32x32" href="LOGO.png"><link rel="icon" type="image/png" sizes="192x192" href="LOGO.png"><link rel="apple-touch-icon" href="LOGO.png"><meta name="msapplication-TileImage" content="LOGO.png">
+
+
+  <title>Tarjeta Digital | Urban Threads</title>
+<style>
+  :root{
+  --brand:#7a0a4f;
+  --brand2:#a01268;
+  --bg:#f7f7fb;
+  --card:#ffffff;
+  --text:#1f2430;
+  --muted:#6b7280;
+  --shadow: 0 18px 60px rgba(0,0,0,.10);
+  --shadow2: 0 14px 34px rgba(0,0,0,.12);
+  --radius: 18px;
+}
+
+/* ===== Base ===== */
+html{ scroll-behavior:smooth; }
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: var(--bg);
+  
+}
+
+a{ text-decoration:none; }
+img{ max-width:100%; height:auto; }
+section{ position:relative; }
+/* ===== Logo circular del navbar ===== */
+/* ===== Logo circular del navbar (SIN aro, imagen más grande) ===== */
+.logo-header{
+  width: 52px;          /* ⬅️ más grande */
+  height: 52px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+
+  /* ❌ sin caja, sin aro, sin borde */
+  box-shadow: none;
+}
+
+/* Desktop: aún más grande */
+@media (min-width: 992px){
+  .logo-header{
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ===== Navbar ===== */
+/* ===== Navbar (reemplaza TODO tu bloque actual) ===== */
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: padding .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+
+/* Links (animación igual que tenías) */
+.navbar .nav-link{
+  transition: opacity .2s ease, transform .2s ease, color .2s ease;
+}
+.navbar .nav-link:hover{
+  opacity: .9;
+  transform: translateY(-1px);
+}
+
+/* Sombra al hacer scroll */
+.navbar.navbar-shrink{
+  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+}
+
+/* ✅ Colores correctos para navbar-dark (sin romper Bootstrap) */
+.navbar.navbar-dark .navbar-brand,
+.navbar.navbar-dark .nav-link{
+  color: rgba(255,255,255,.88);
+}
+.navbar.navbar-dark .nav-link:hover,
+.navbar.navbar-dark .nav-link:focus{
+  color: #fff;
+}
+
+/* ✅ Botón "Contacto" (que es <a> con btn-primary) */
+.navbar .btn.btn-primary{
+  color: #fff;
+}
+
+/* ===== Botones ===== */
+.btn-primary{
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.btn-primary:hover{
+  background: var(--brand2);
+  border-color: var(--brand2);
+}
+.btn-whatsapp{
+  background: #25D366;
+  border: 0;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(37,211,102,.25);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-whatsapp:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(37,211,102,.28);
+  filter: brightness(.98);
+}
+
+/* ===== Backgrounds por sección ===== */
+.bg-claro{ background: #f0c3c7; }     /* rosa suave (como tu screenshot) */
+.bg-white{ background:#fff; }
+.bg-light{ background:#fff; }        /* para que se vea como tu captura */
+
+/* ===== Hero / Carrusel ===== */
+.hero-bg{ background:#111; }
+#heroCarousel .carousel-inner,
+#heroCarousel .carousel-item,
+#heroCarousel img{
+  height: 100%;
+}
+#heroCarousel img{
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.02);
+  transform: scale(1.02);
+  transition: transform 7s ease;
+}
+/* “Motion” sutil del fondo (se siente pro) */
+#heroCarousel .carousel-item.active img{
+  transform: scale(1.10);
+}
+
+/* Caption centrado y con blur suave */
+.carousel-caption{
+  text-shadow: 0 12px 30px rgba(0,0,0,.55);
+}
+.carousel-caption::before{
+  content:"";
+  position:absolute;
+  inset: 18% 10%;
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(3px);
+  border-radius: 28px;
+  z-index: -1;
+}
+
+/* Animación del texto del slide cuando entra */
+#heroCarousel .carousel-item.active .carousel-caption h1{
+  animation: heroUp .70s ease both;
+}
+#heroCarousel .carousel-item.active .carousel-caption p{
+  animation: heroUp .85s ease .05s both;
+}
+#heroCarousel .carousel-item.active .carousel-caption a{
+  animation: heroUp .95s ease .10s both;
+}
+@keyframes heroUp{
+  from{ opacity:0; transform: translateY(14px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* Controles más “finos” */
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+}
+
+/* ===== Cards / Planes ===== */
+.service-card{
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden; /* ✅ se mantiene para cards normales */
+  transition: transform .2s ease, box-shadow .2s ease;
+  background: var(--card);
+}
+.service-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow2);
+}
+.service-icon{
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+.feature-list{
+  list-style: none;
+  padding:0;
+  margin:0;
+  max-width: 240px;
+}
+.feature-list li{
+  display:flex;
+  gap:.55rem;
+  align-items:center;
+  margin: .35rem 0;
+  color: #2c2f36;
+  font-size: .95rem;
+}
+.feature-list i{
+  color: #24a148;
+}
+
+/* ===== “Más vendido” (badge ARRIBA de la tarjeta) ===== */
+
+/* ✅ OJO: aplica .featured en el MISMO elemento que tiene .service-card */
+.service-card.featured{
+  position: relative;
+  border: 2px solid rgba(122,10,79,.18);
+  border-radius: var(--radius);
+  overflow: visible; /* ✅ permite que el badge salga hacia arriba */
+}
+
+/* ✅ NO empujes 64px, solo un respiro arriba */
+.service-card.featured .card-body{
+  padding-top: 1.25rem;
+}
+
+/* ✅ Badge flotando arriba */
+.service-card.featured .badge-featured{
+  position: absolute;
+  top: -18px; /* ✅ fuera de la card, como tu 1ra imagen */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+
+  background: var(--brand);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 800;
+  padding: 9px 16px;
+  border-radius: 999px;
+  box-shadow: 0 14px 26px rgba(122,10,79,.25);
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+/* ===== Nosotros ===== */
+#nosotros .stat{
+  background:#fff;
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align:center;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+.stat-number{
+  display:block;
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--brand);
+  line-height: 1;
+}
+.stat-label{
+  display:block;
+  margin-top: 6px;
+  font-size: .92rem;
+  color: var(--muted);
+}
+.nosotros-img-wrap img{
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  transform: translateZ(0);
+}
+
+/* ===== Directorio ===== */
+.directorio-card{
+  border:0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.directorio-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow2);
+}
+.directorio-logo{
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  border: 4px solid rgba(122,10,79,.10);
+}
+
+/* ===== Blog ===== */
+.blog-img{
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+.blog-text{
+  color: #2b2f3a;
+  line-height: 1.7;
+}
+
+/* ===== Testimonios ===== */
+.t-card{
+  border-radius: 22px;
+}
+.t-avatar{
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 999px;
+  border: 4px solid rgba(122,10,79,.12);
+}
+.t-quote{
+  font-size: 1.05rem;
+  color:#2b2f3a;
+  line-height:1.7;
+}
+
+/* ===== Contacto ===== */
+.contact-card{
+  border:0;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+.contact-list li{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  margin: 12px 0;
+}
+.icon-badge{
+  width: 40px; height: 40px;
+  display:grid; place-items:center;
+  border-radius: 12px;
+  background: rgba(122,10,79,.10);
+  color: var(--brand);
+}
+.map-embed{
+  border:0;
+}
+
+/* ==============================
+   "VER EJEMPLO" por plan (TONOS SÓLIDOS + TEXTO BLANCO)
+   Básico = azul claro sólido
+   Avanzado = dorado sólido
+   Ejecutivo = plateado sólido
+   Empresarial = negro sólido + franja roja sólida
+   (SIN !important)
+   ============================== */
+
+/* Base común */
+#services a.btn.service-btn-basico,
+#services a.btn.service-btn-avanzado,
+#services a.btn.service-btn-ejecutivo,
+#services a.btn.service-btn,
+#services a.btn.service-btn-empresarial{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  border-radius: 12px;
+  padding: .62rem 1rem;
+  overflow: hidden;
+  color: #fff;                 /* ✅ letras blancas SIEMPRE */
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, filter .18s ease;
+}
+
+/* Hover pro */
+#services a.btn.service-btn-basico:hover,
+#services a.btn.service-btn-avanzado:hover,
+#services a.btn.service-btn-ejecutivo:hover,
+#services a.btn.service-btn:hover,
+#services a.btn.service-btn-empresarial:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.16);
+  filter: brightness(.98);
+}
+
+/* ============ BÁSICO (AZUL CLARO SÓLIDO) ============ */
+#services a.btn.service-btn-basico{
+  background: #3b82f6;      /* azul */
+  border-color: #3b82f6;
+}
+#services a.btn.service-btn-basico:hover,
+#services a.btn.service-btn-basico:focus{
+  background: #2563eb;      /* azul más fuerte */
+  border-color: #2563eb;
+}
+
+/* ============ AVANZADO (DORADO SÓLIDO) ============ */
+#services a.btn.service-btn-avanzado{
+  background: #d4af37;      /* dorado */
+  border-color: #d4af37;
+  color: #fff;              /* blanco como pediste */
+}
+#services a.btn.service-btn-avanzado:hover,
+#services a.btn.service-btn-avanzado:focus{
+  background: #b68b10;      /* dorado más oscuro */
+  border-color: #b68b10;
+}
+
+/* ============ EJECUTIVO (PLATEADO SÓLIDO) ============ */
+#services a.btn.service-btn-ejecutivo{
+  background: #9aa4b2;      /* plateado */
+  border-color: #9aa4b2;
+}
+#services a.btn.service-btn-ejecutivo:hover,
+#services a.btn.service-btn-ejecutivo:focus{
+  background: #7d8796;      /* plateado más oscuro */
+  border-color: #7d8796;
+}
+
+/* ============ EMPRESARIAL (NEGRO SÓLIDO + FRANJA ROJA SÓLIDA) ============ */
+/* Tu empresarial usa .service-btn (y opcional .service-btn-empresarial) */
+#services a.btn.service-btn,
+#services a.btn.service-btn-empresarial{
+  background: #0b0f1a;      /* negro sólido */
+  border-color: #0b0f1a;
+  color: #fff;
+}
+
+
+
+/* hover empresarial */
+#services a.btn.service-btn:hover,
+#services a.btn.service-btn:focus,
+#services a.btn.service-btn-empresarial:hover,
+#services a.btn.service-btn-empresarial:focus{
+  background: #050711;      /* negro más profundo */
+  border-color: #050711;
+}
+
+/* foco visible */
+#services a.btn.service-btn-basico:focus-visible,
+#services a.btn.service-btn-avanzado:focus-visible,
+#services a.btn.service-btn-ejecutivo:focus-visible,
+#services a.btn.service-btn:focus-visible,
+#services a.btn.service-btn-empresarial:focus-visible{
+  outline: 3px solid rgba(122,10,79,.25);
+  outline-offset: 3px;
+}
+
+/* ===== WhatsApp Bubble ===== */
+
+.whatsapp-bubble{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #25D366;
+  color: #fff;
+  z-index: 9999;
+  box-shadow: 0 14px 28px rgba(0,0,0,.18);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.whatsapp-bubble:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.22);
+  filter: brightness(.98);
+}
+/* Se aplica la animación a la burbuja */
+.whatsapp-bubble {
+    animation: bounce 0.5s ease-in-out 2;
+    /* Resto del estilo de la burbuja */
+  }
+  @media (prefers-reduced-motion: reduce){
+  .whatsapp-bubble{ animation:none; }
+}
+
+/* ===== Label “Envía un Mensaje” ===== */
+
+.whatsapp-label{
+  position: fixed;
+  right: 18px;
+  bottom: 84px;                /* arriba del círculo */
+  background: var(--brand);    /* magenta por defecto */
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-size: .9rem;
+  font-weight: 700;
+  z-index: 9999;
+  box-shadow: 0 14px 28px rgba(0,0,0,.18);
+  cursor: pointer;
+
+  transition:
+    background-color .15s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+/* 🖱️ Desktop */
+.whatsapp-label:hover{
+  background: #25D366;
+}
+
+/* 📱 Móvil (TOQUE REAL) */
+.whatsapp-label:active{
+  background: #25D366;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.22);
+}
+
+/* evita highlight feo en móvil */
+.whatsapp-label{
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== Footer ===== */
+#site-footer{
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.footer-title{
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.footer-links a{
+  color: rgba(255,255,255,.80);
+  display:inline-block;
+  margin: 6px 0;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.footer-links a:hover{
+  opacity:1;
+  transform: translateX(2px);
+}
+.footer-contact a{ color: rgba(255,255,255,.86); }
+.footer-divider{ opacity:.12; }
+.footer-social a{
+  color: rgba(255,255,255,.86);
+  font-size: 1.25rem;
+  margin-right: 10px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.footer-social a:hover{ transform: translateY(-2px); opacity:1; }
+/* ✅ Links legales del footer en blanco (Bootstrap los pone azules si no lo fuerzas) */
+#site-footer .nav .nav-link{
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+}
+#site-footer .nav .nav-link:hover,
+#site-footer .nav .nav-link:focus{
+  color: #fff;
+}
+/* ===== Logo del footer (tamaño controlado) ===== */
+/* ===== Logo del footer (tamaño correcto y balanceado) ===== */
+.footer-logo{
+  height: 130px;        /* 👈 desktop un poco más grande */
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 992px){
+  .footer-logo{
+    height: 70px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 576px){
+  .footer-logo{
+    height: 60px;
+  }
+}
+
+/* ===== Botón WhatsApp – Contacto ===== */
+.btn-contact{
+  background: #25D366;          /* verde WhatsApp */
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  border-radius: 14px;
+  padding: .9rem 1.25rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+
+  box-shadow: 0 12px 26px rgba(37,211,102,.35);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease,
+    background-color .18s ease;
+}
+
+/* Hover desktop */
+.btn-contact:hover{
+  background: #1ebe5d;          /* verde WhatsApp más oscuro */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(37,211,102,.45);
+  filter: brightness(.98);
+}
+
+/* Click / tap */
+.btn-contact:active{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(37,211,102,.40);
+}
+
+/* Icono WhatsApp */
+.btn-contact i{
+  font-size: 1.15rem;
+}
+
+/* Focus accesible */
+.btn-contact:focus-visible{
+  outline: 3px solid rgba(37,211,102,.45);
+  outline-offset: 3px;
+}
+
+/* ✅ Este sepuede quitar si la caja de video se vuelve blanca*/
+/* ✅ Caja del video con fondo #ebded4 */
+.video-box{
+  background: #ebded4;
+}
+
+/* ✅ Para que el video no deje “huecos” raros */
+.video-box video{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== Motion extra (suave) ===== */
+/* ===== Motion extra (suave) ===== */
+@media (prefers-reduced-motion: reduce){
+
+  html{
+    scroll-behavior: auto;
+  }
+
+  body,
+  body *{
+    animation: none;
+    transition-property: none;
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
+
+}
+
+/* Fallback si Bootstrap no carga (evita la lista con bullets) */
+.navbar ul{ list-style:none; padding-left:0; margin:0; }
+.navbar a{ color: inherit; }
+
+
+/* aqui inicia todo lo del astronauta y el contactar que flota */
+/* BOTÓN WHATSAPP */
+/* BOTÓN WHATSAPP */
+.whatsapp-bubble {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 22px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TEXTO AL LADO (ASESOR) */
+.whatsapp-tag {
+  position: absolute;
+  right: 55px;
+  background: #25D366;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
+  box-shadow: #25D366;
+}
+
+/* PIQUITO */
+.whatsapp-tag::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: #25D366;
+}
+
+/* ASTRONAUTA */
+.astro-container {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  z-index: 999;
+}
+
+.astro {
+  width: 90px;
+  height: 90px;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.astro lottie-player {
+  width: 100%;
+  height: 100%;
+}
+
+/* FLOTAR */
+@keyframes flotar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+</style>
+
+
+<!-- BOTÓN WHATSAPP -->
+<a href="https://wa.me/523343340062?text=Me%20interesa%20sus%20servicios"
+   class="whatsapp-bubble"
+   target="_blank">
+
+  <i class="fab fa-whatsapp"></i>
+
+  <span class="whatsapp-tag">Asesor disponible</span>
+
+</a>
+
+
+<!-- ASTRONAUTA -->
+<div class="astro-container">
+  <div class="astro">
+    <lottie-player 
+      src="sapace.json"  
+      background="transparent"  
+      speed="1"  
+      loop autoplay>
+    </lottie-player>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">¿Qué es?</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#directorio">Directorio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-3" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+
+   <!-- Hero con Carrusel -->
+    <header id="home" class="vh-100 d-flex align-items-center hero-bg">
+    <div id="heroCarousel" class="carousel slide w-100 h-100" data-bs-ride="carousel">
+        <div class="carousel-inner h-100">
+<!-- Slide 1 -->
+<div class="carousel-item active h-100">
+    <img src="imagenes (1).jpg" class="d-block w-100 h-100 object-fit-cover" alt="SuperVolante 1">
+    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+    <h1 class="display-4 fw-bold">¡Tu Tarjeta Digital que Sí Vende!</h1>
+    <p class="lead">Tarjetas de presentación, micrositios y CV digitales listos para compartir 🚀</p>
+    <div class="text-center">
+      <a href="#services" class="btn btn-lg btn-whatsapp mt-3">Ver paquetes y precios</a>
+    </div>
+    </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="carousel-item h-100">
+    <img src="imagenes (4).jpg" class="d-block w-100 h-100 object-fit-cover" alt="SuperVolante 2">
+    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+    <h1 class="display-4 fw-bold">Haz que te Encuentren Online</h1>
+    <p class="lead">Crea presencia profesional con tu página, links y botones en un solo lugar.</p>
+   <div class="text-center">
+     <a href="#directorio" class="btn btn-lg btn-whatsapp mt-3">Explorar ejemplos reales</a>
+   </div>
+    </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="carousel-item h-100">
+    <img src="imagenes (3).jpg" class="d-block w-100 h-100 object-fit-cover" alt="SuperVolante 3">
+    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+    <h1 class="display-4 fw-bold">Rápido, Bonito y Accesible</h1>
+    <p class="lead">Tu tarjeta o micrositio en poco tiempo, con diseño profesional y sin complicaciones.</p>
+   <div class="text-center">
+     <a href="#contacto" class="btn btn-lg btn-whatsapp mt-3">Pedir mi tarjeta digital</a>
+   </div>
+    </div>
+</div>
+</div>
+
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    </header>
+
+  <!-- ¿Qué es SuperVolante? -->
+  <!-- <section id="about" class="py-5 bg-light">
+    <div class="container" data-aos="fade-right">
+      <h2 class="mb-4 text-center">¿Qué es SuperVolante?</h2>
+      <p class="text-center">SuperVolante es una plataforma que ofrece micrositios digitales profesionales, asequibles y creativos. Pensados para emprendedores, profesionales y pequeños negocios que buscan destacar en internet sin complicaciones.</p>
+    </div>
+  </section> -->
+
+  <!-- ¿Qué es SuperVolante? -->
+ <section id="about" class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <h2 class="mb-3 text-center text-lg-start">¿Qué ofrecemos?</h2>
+        <p class="mb-3 text-center text-lg-start">
+          Creamos tarjetas de presentación digitales, micrositios, páginas web y CV digitales con diseño profesional.
+          Soluciones prácticas y accesibles para emprendedores, profesionistas y negocios que quieren verse formales,
+          compartir su información fácilmente y tener presencia real en internet, sin enredos técnicos.
+        </p>
+        <a href="#services" class="btn btn-primary">Ver planes</a>
+      </div>
+
+
+      <div class="col-lg-6">
+        <!-- ✅ Contenedor responsivo (caja del video con fondo #ebded4) -->
+       <div class="ratio ratio-1x1 rounded shadow overflow-hidden video-box">
+
+  <!-- 👇 CUBO (reemplazo del video) -->
+  <iframe
+    src="https://creaciones19.github.io/cuboimagen/"
+    style="width:100%; height:100%; border:none;">
+  </iframe>
+
+  <!-- 👇 VIDEO ORIGINAL (comentado)
+  <video
+    src="video.mp4"
+    poster="assets/img/poster-supervolante.jpg"
+    controls
+    playsinline
+    preload="metadata"
+    controlslist="nodownload noplaybackrate"
+    disablepictureinpicture
+  ></video>
+  -->
+
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+<section id="about" class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <h2 class="mb-3 text-center text-lg-start">¿Qué es SuperVolante?</h2>
+        <p class="mb-3 text-center text-lg-start">
+          SuperVolante es una plataforma que ofrece micrositios digitales profesionales, asequibles y creativos. 
+          Pensados para emprendedores, profesionales y pequeños negocios que buscan destacar en internet sin complicaciones.
+        </p>
+        <a href="#services" class="btn btn-primary">Ver planes</a>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="ratio ratio-1x1 rounded shadow overflow-hidden">
+          <video 
+            src="video.mp4"
+            poster="assets/img/poster-supervolante.jpg"
+            controls 
+            playsinline 
+            preload="metadata"
+            controlslist="nodownload noplaybackrate"
+            disablepictureinpicture
+          ></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+
+ <!-- Servicios -->
+  <section id="services" class="py-5 bg-claro">
+    <div class="container" data-aos="fade-up">
+      <h2 class="mb-4 text-center">Servicios y Planes</h2>
+      <div class="row g-4" id="planes-grid">
+
+ <!-- Básico -->
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card h-100 shadow service-card d-flex flex-column text-center">
+    <div class="card-body d-flex flex-column">
+      <img src="imagenes (2).jpg" alt="Básico" class="service-icon mx-auto mb-3" loading="lazy" decoding="async">
+      <h5 class="card-title">Básico</h5>
+      <p class="card-text">Micrositio tipo tarjeta digital.</p>
+
+      <!-- Checklist -->
+      <ul class="feature-list text-start mx-auto mt-2 mb-3">
+        <li><i class="bi bi-check-circle-fill"></i> Foto de perfil</li>
+        <li><i class="bi bi-check-circle-fill"></i> Accesos rápidos</li>
+        <li><i class="bi bi-check-circle-fill"></i> Un video corto</li>
+        <li><i class="bi bi-check-circle-fill"></i> Un PDF</li>
+        <li><i class="bi bi-check-circle-fill"></i> Redes sociales</li>
+        <li><i class="bi bi-check-circle-fill"></i> Código QR</li>
+      </ul>
+
+      <p class="fw-bold mt-auto mb-3">$450 MXN</p>
+      <a href="https://creaciones19.github.io/volanteginecologa/" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary service-btn-basico">Ver ejemplo</a>
+          <button class="btn btn-whatsapp mt-2" onclick="enviarWhatsapp('Básico')"> 
+        <i class="bi bi-whatsapp"></i> Comprar por WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Avanzado (Más vendido) -->
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card h-100 shadow service-card featured d-flex flex-column text-center">
+    <div class="card-body d-flex flex-column">
+      <span class="badge-featured">Más vendido</span>
+      <img src="imagenes (2).jpg" alt="Avanzado" class="service-icon mx-auto mb-3" loading="lazy" decoding="async">
+      <h5 class="card-title">Avanzado</h5>
+      <p class="card-text">Micrositio con secciones extra.</p>
+
+      <!-- Checklist Avanzado -->
+      <ul class="feature-list text-start mx-auto mt-2 mb-3">
+        <li><i class="bi bi-check-circle-fill"></i> Foto de perfil</li>
+        <li><i class="bi bi-check-circle-fill"></i> Accesos rápidos</li>
+        <li><i class="bi bi-check-circle-fill"></i> 3 videos cortos</li>
+        <li><i class="bi bi-check-circle-fill"></i> Un PDF</li>
+        <li><i class="bi bi-check-circle-fill"></i> Redes sociales</li>
+        <li><i class="bi bi-check-circle-fill"></i> Código QR</li>
+        <li><i class="bi bi-check-circle-fill"></i> Botones CTA personalizados</li>
+        <li><i class="bi bi-check-circle-fill"></i> Galería de imágenes (hasta 12)</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Misión y Visión</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Servicios</li>
+      </ul>
+
+      <p class="fw-bold mt-auto mb-3">$800.00 MXN</p>
+      <a href="https://creaciones19.github.io/volantetarjeta/" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary service-btn-avanzado">Ver ejemplo</a>
+          <button class="btn btn-whatsapp mt-2" onclick="enviarWhatsapp('Avanzado')"> 
+        <i class="bi bi-whatsapp"></i> Comprar por WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Ejecutivo -->
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card h-100 shadow service-card d-flex flex-column text-center">
+    <div class="card-body d-flex flex-column">
+      
+      <img src="imagenes (2).jpg" alt="Ejecutivo" class="service-icon mx-auto mb-3" loading="lazy" decoding="async">
+      <h5 class="card-title">Ejecutivo</h5>
+      <p class="card-text">Landing page profesional completa.</p>
+
+      <!-- Checklist Ejecutivo -->
+      <ul class="feature-list text-start mx-auto mt-2 mb-3">
+        <li><i class="bi bi-check-circle-fill"></i> Foto de perfil</li>
+        <li><i class="bi bi-check-circle-fill"></i> Accesos rápidos</li>
+        <li><i class="bi bi-check-circle-fill"></i> Videos (hasta 3)</li>
+        <li><i class="bi bi-check-circle-fill"></i> PDFs descargables</li>
+        <li><i class="bi bi-check-circle-fill"></i> Redes sociales</li>
+        <li><i class="bi bi-check-circle-fill"></i> Código QR</li>
+        <li><i class="bi bi-check-circle-fill"></i> Botones CTA personalizados</li>
+        <li><i class="bi bi-check-circle-fill"></i> Galería de imágenes (hasta 12)</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Misión y Visión</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Servicios</li>
+        <li><i class="bi bi-check-circle-fill"></i> <strong>Diseño personalizado al gusto</strong></li>
+        <li><i class="bi bi-check-circle-fill"></i> <strong>Formulario que envía a WhatsApp</strong></li>
+        <li class="d-flex flex-wrap align-items-center gap-2">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Botones de pago:</span>
+          <span class="pay-badge">Mercado Pago</span>
+          <span class="pay-badge">PayPal</span>
+          <span class="pay-badge">Link de cobro</span>
+        </li>
+      </ul>
+
+      <p class="fw-bold mt-auto mb-3">$4,200.00 MXN</p>
+      <a href="https://creaciones19.github.io/lamonaramona/#menu" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary service-btn-ejecutivo">Ver ejemplo</a>
+          <button class="btn btn-whatsapp mt-2" onclick="enviarWhatsapp('Ejecutivo')"> 
+        <i class="bi bi-whatsapp"></i> Comprar por WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Empresarial -->
+<div class="col-12 col-md-6 col-lg-3">
+  <div class="card h-100 shadow service-card d-flex flex-column text-center">
+    <div class="card-body d-flex flex-column">
+      <img src="imagenes (2).jpg" alt="Empresarial" class="service-icon mx-auto mb-3" loading="lazy" decoding="async">
+      <h5 class="card-title">Empresarial</h5>
+      <p class="card-text">Diseños personalizados a medida.</p>
+
+      <!-- Checklist: TODO lo de Ejecutivo + infraestructura -->
+      <ul class="feature-list text-start mx-auto mt-2 mb-3">
+        <!-- Base (como Ejecutivo) -->
+        <li><i class="bi bi-check-circle-fill"></i> Foto de perfil</li>
+        <li><i class="bi bi-check-circle-fill"></i> Accesos rápidos</li>
+        <li><i class="bi bi-check-circle-fill"></i> Videos (hasta 3)</li>
+        <li><i class="bi bi-check-circle-fill"></i> PDFs descargables</li>
+        <li><i class="bi bi-check-circle-fill"></i> Redes sociales</li>
+        <li><i class="bi bi-check-circle-fill"></i> Código QR</li>
+        <li><i class="bi bi-check-circle-fill"></i> Botones CTA personalizados</li>
+        <li><i class="bi bi-check-circle-fill"></i> Galería de imágenes (hasta 12)</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Misión y Visión</li>
+        <li><i class="bi bi-check-circle-fill"></i> Sección de Servicios</li>
+        <li><i class="bi bi-check-circle-fill"></i> <strong>Diseño 100% personalizado</strong></li>
+        <li><i class="bi bi-check-circle-fill"></i> <strong>Formulario que envía a WhatsApp</strong></li>
+        <li class="d-flex flex-wrap align-items-center gap-2">
+          <i class="bi bi-check-circle-fill"></i><span>Botones de pago:</span>
+          <span class="pay-badge">Mercado Pago</span>
+          <span class="pay-badge">PayPal</span>
+          <span class="pay-badge">Link de cobro</span>
+        </li>
+        <!-- Infraestructura extra -->
+        <li><i class="bi bi-globe2"></i> Dominio</li>
+        <li><i class="bi bi-hdd-network"></i> Hosting</li>
+        <li><i class="bi bi-shield-check"></i> SSL</li>
+        <li><i class="bi bi-envelope-at"></i> Correo institucional</li>
+      </ul>
+
+      <p class="fw-bold mt-auto mb-3">Cotizar</p>
+      <a href="https://creaciones19.github.io/DG-RECUPERADORA/index.html"
+         target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary service-btn">
+        Ver ejemplo
+      </a>
+      <button class="btn btn-whatsapp mt-2" onclick="enviarWhatsapp('Empresarial')"> 
+        <i class="bi bi-whatsapp"></i> Comprar por WhatsApp
+      </button>
+
+    </div>
+  </div>
+</div>
+ 
+</div>
+    </div>
+  </section>
+<!-- Nosotros -->
+<section id="nosotros" class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center g-4" data-aos="fade-up">
+      
+      <!-- Texto -->
+      <div class="col-lg-6 order-2 order-lg-1">
+        <h2 class="mb-3">Nosotros</h2>
+       <p class="mb-3">
+  En <strong>Creaciones19</strong> ayudamos a emprendedores, profesionistas y
+  negocios a crear tarjetas de presentación digitales, micrositios, páginas web y
+  CV digitales claros, funcionales y profesionales.
+  Diseñamos experiencias simples que transmiten confianza y facilitan el contacto.
+</p>
+<p class="mb-4">
+  Nuestro enfoque es <strong>práctico y personalizado</strong>: integramos únicamente
+  lo que realmente necesitas (botones de contacto, WhatsApp, video, galería,
+  enlaces, pagos, dominio/hosting/SSL) para que tu presencia digital esté lista
+  rápido y sin complicaciones.
+</p>
+
+
+        <!-- Mini estadísticas -->
+        <div class="row g-3">
+          <div class="col-6 col-md-4">
+            <div class="stat">
+              <span class="stat-number">2</span>
+              <span class="stat-label">Años</span>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="stat">
+              <span class="stat-number">+100</span>
+              <span class="stat-label">Micrositios</span>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="stat">
+              <span class="stat-number">Atención</span>
+              <span class="stat-label">Personalizada</span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Imagen -->
+    <!-- Imagen / Demo interactivo -->
+<div class="col-lg-6 order-1 order-lg-2 text-center">
+  <div class="nosotros-img-wrap mx-auto">
+
+    <div id="demoBox" style="height:400px; overflow:hidden; position:relative;">
+
+      <iframe 
+        src="https://creaciones19.github.io/figurasaliente/" 
+        style="
+          position:absolute;
+          top:50%;
+          left:50%;
+          width:120%;
+          height:120%;
+          border:none;
+          transform: translate(-50%, -50%) scale(0.82);
+          transform-origin: center;
+        ">
+      </iframe>
+
+    </div>
+
+  </div>
+</div>
+</div>
+ <!-- 👇 IMAGEN ORIGINAL (COMENTADA PARA USAR DESPUÉS)
+    <img src="imagenes (7).jpg" alt="Equipo SuperVolante"
+         class="img-fluid rounded shadow-sm">
+    -->
+<script>
+document.getElementById("demoBox").addEventListener("click", function() {
+  this.style.height = "80vh";
+});
+</script>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Directorio -->
+<section id="directorio" class="py-5 bg-claro">
+  <div class="container" data-aos="fade-left">
+    <h2 class="mb-3 text-center">Directorio</h2>
+    <p class="text-center mb-5">
+ <strong>Empresas que trabajan con nosotros</strong> 
+ <br>
+ <strong> tarjeta de presentación</strong>.
+</p>
+
+
+    <div class="row justify-content-center g-4">
+      
+      <!-- La burbuja feliz-->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm text-center p-3 directorio-card">
+          <img src="logolavanderia.png" alt="SR Clean" class="directorio-logo rounded-circle mb-3 d-block mx-auto" loading="lazy" decoding="async">
+          <h5 class="card-title">Lavandería La Burbuja Feliz</h5>
+          <p class="card-text">Servicios de lavado dedicado al cuidado profesional de tu ropa, ofreciendo servicios de lavado, secado y planchado con altos estándares de limpieza y atención al detalle.</p>
+          <small class="text-muted d-block mb-2">CDMX- Lavanderia Profesional</small>
+          <a href="https://creaciones19.github.io/lavanderiavolante/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            Ver Empresa
+          </a>
+        </div>
+      </div>
+
+      <!-- Beauty Therapy -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm text-center p-3 directorio-card">
+          <img src="logosalonb.png" alt="EPEMA" class="directorio-logo rounded-circle mb-3 d-block mx-auto" loading="lazy" decoding="async">
+          <h5 class="card-title">Elizabeth Simmons Beauty Therapy </h5>
+          <p class="card-text">Es un salón de belleza y spa dedicado al cuidado integral de la imagen, la piel y el bienestar.</p>
+          <small class="text-muted d-block mb-2">CDMX - Salón de Belleza y Spa </small>
+          <a href="https://creaciones19.github.io/vilantesalondebelleza/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+           Ver Empresa
+          </a>
+        </div>
+      </div>
+
+      <!-- La Despensa a Granel -->
+         <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm text-center p-3 directorio-card">
+          <img src="logoabarrotes.png" alt="EPEMA" class="directorio-logo rounded-circle mb-3 d-block mx-auto" loading="lazy" decoding="async">
+          <h5 class="card-title">La Despensa a Granel tienda de Abarrotes</h5>
+          <p class="card-text">La Despensa a Granel es una tienda de abarrotes enfocada en alimentación artesanal y productos a granel.</p>
+          <small class="text-muted d-block mb-2">CDMX- Tienda de Abarrotes<</small>
+          <a href="https://creaciones19.github.io/volanteabarrotes/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+           Ver Empresa
+          </a>
+        </div>
+      </div>
+       </div>
+  </div>
+</section>
+
+
+ <!-- Blog -->
+<section id="blog" class="py-5 bg-white">
+  <div class="container" data-aos="fade-up">
+    <div class="row align-items-center g-4">
+      
+      <!-- Imagen -->
+      <div class="col-lg-6 text-center">
+
+        <!-- 
+        <img src="imagenes (6).jpg" 
+             alt="Landing Pages para emprendedores" 
+             class="img-fluid rounded shadow-sm blog-img" 
+             loading="lazy" decoding="async">
+        -->
+
+        <div class="img-fluid rounded shadow-sm blog-img d-flex justify-content-center align-items-center"
+             style="aspect-ratio: 1 / 1; overflow: hidden;">
+
+          <div id="animacionVideo" style="width:100%; height:100%;"></div>
+
+        </div>
+
+      </div>
+
+      <!-- Texto -->
+      <div class="col-lg-6">
+        <h2 class="mb-3 text-center text-lg-start">¿Para qué me sirve una Landing Page?</h2>
+        <p class="blog-text">
+          Las <strong>Landing Pages</strong> se han convertido en una herramienta esencial para los 
+          <em>emprendedores</em> que buscan crecer sin gastar de más. Son páginas simples, enfocadas y 
+          de bajo costo que concentran la atención del cliente en una sola acción: comprar, registrarse o contactar.  
+        </p>
+        <p class="blog-text">
+          A diferencia de un sitio web completo, una Landing Page bien diseñada puede ayudarte a 
+          <strong>vender más rápido, validar ideas</strong> y construir tu comunidad digital con inversión mínima.
+        </p>
+        <div class="text-center text-lg-start mt-4">
+          <a href="#" class="btn btn-primary blog-btn">Seguir leyendo →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lottie (una sola vez en toda la página, antes de </body>) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  let cargado = false;
+  const contenedor = document.getElementById("animacionVideo");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !cargado) {
+
+        lottie.loadAnimation({
+          container: contenedor,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "video.json"
+        });
+
+        cargado = true;
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(contenedor);
+
+});
+</script>
+  <!-- Testimonios -->
+<section id="testimonios" class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <h2 class="text-center mb-4">Testimonios</h2>
+    <div id="testimoniosCarousel" class="carousel slide" aria-label="Testimonios de clientes" data-bs-ride="carousel" data-bs-interval="5200" data-bs-pause="false">
+      <!-- Indicadores -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="SR Clean"></button>
+        <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="1" aria-label="EPEMA"></button>
+        <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="2" aria-label="Gilda Estrada"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+      <!-- La Burbuja Feliz -->
+<div class="carousel-item active">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="t-card shadow-sm p-4 text-center bg-white">
+
+        <img 
+          src="logolavanderia.png" 
+          class="t-avatar mb-3" 
+          alt="Lavandería La Burbuja Feliz" 
+          loading="lazy" 
+          decoding="async"
+        >
+
+        <h5 class="mb-1">Lavandería La Burbuja Feliz</h5>
+
+        <small class="text-muted d-block mb-3">
+          Lavandería profesional · CDMX
+        </small>
+
+        <p class="lead t-quote">
+          “La tarjeta de presentación digital nos ha facilitado compartir
+          nuestros servicios con los clientes y recibir mensajes de forma directa.
+          Ahora pueden conocernos mejor y contactarnos de manera rápida y sencilla.”
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+       <!-- Manuel Reyes (Gimnasio) -->
+<div class="carousel-item">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="t-card shadow-sm p-4 text-center bg-white">
+
+        <img src="entrenador.jpg" class="t-avatar mb-3" alt="Manuel Reyes" loading="lazy" decoding="async">
+
+        <h5 class="mb-1">Manuel Reyes</h5>
+
+        <small class="text-muted d-block mb-3">Entrenador personal · Fuerza y recomposición · CDMX</small>
+
+        <p class="lead t-quote">
+          “Me gustó porque en un solo enlace puedo mostrar mi promo del mes, lo que incluye cada plan y
+          los botones para agendar o pedir evaluación. Se ve profesional y ayuda a que la gente llegue lista.”
+        </p>
+
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Luis Alfredo Cureño Ferrer -->
+<div class="carousel-item">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="t-card shadow-sm p-4 text-center bg-white">
+
+        <img 
+          src="Aspectos que me definen logo.png" 
+          class="t-avatar mb-3" 
+          alt="Luis Alfredo Cureño Ferrer" 
+          loading="lazy" 
+          decoding="async"
+        >
+
+        <h5 class="mb-1">Luis Alfredo Cureño Ferrer</h5>
+
+        <small class="text-muted d-block mb-3">
+          Maestría en Finanzas · Investment Officer Independiente
+        </small>
+
+        <p class="lead t-quote">
+          “La tarjeta de presentación digital me permite compartir mi perfil profesional,
+          centralizar mis medios de contacto y proyectar una imagen clara y confiable
+          para clientes e inversionistas.”
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+
+      <!-- Controles (opcionales) -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Contacto -->
+<section id="contacto" class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <h2 class="text-center mb-4">Contacto</h2>
+
+    <div class="row g-4 align-items-stretch">
+      <!-- Formulario -->
+      <div class="col-lg-5">
+        <div class="card contact-card h-100">
+          <div class="card-body p-4">
+            <h5 class="mb-3">Escríbenos</h5>
+            <form id="contact-form">
+              <div class="mb-3">
+                <label class="form-label" for="c-nombre">Tu nombre</label>
+                <input type="text" id="c-nombre" class="form-control form-control-lg" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="c-telefono">Tu teléfono</label>
+                <input type="tel" id="c-telefono" class="form-control form-control-lg" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="c-mensaje">Tu mensaje</label>
+                <textarea id="c-mensaje" class="form-control form-control-lg" rows="4" placeholder="Cuéntanos qué necesitas…"></textarea>
+              </div>
+              <button type="submit" class="btn btn-contact w-100">
+                <i class="bi bi-whatsapp me-2"></i>Enviar por WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos + Mapa -->
+      <div class="col-lg-7">
+  <div class="card h-100">
+    <div class="card-body p-4 d-flex flex-column">
+      <h5 class="mb-3">Datos de contacto</h5>
+
+      <ul class="list-unstyled contact-list mb-4">
+        <li>
+          <span class="icon-badge"><i class="bi bi-geo-alt-fill"></i></span>
+          <div>
+            <strong>Ubicación</strong><br>
+            Roma Sur
+          </div>
+        </li>
+        <li>
+          <span class="icon-badge"><i class="bi bi-telephone-fill"></i></span>
+          <div>
+            <strong>Teléfono / WhatsApp</strong><br>
+            <a href="https://wa.me/523343340062" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer">3343340062</a>
+          </div>
+        </li>
+        <li>
+          <span class="icon-badge"><i class="bi bi-envelope-fill"></i></span>
+          <div>
+            <strong>Correo</strong><br>
+            <a href="mailto:creaciones19@gmail.com">creaciones19@gmail.com</a>
+          </div>
+        </li>
+        <li>
+          <span class="icon-badge"><i class="bi bi-clock-fill"></i></span>
+          <div>
+            <strong>Horario</strong><br>
+            Lunes a Viernes · 10:00–17:00
+          </div>
+        </li>
+      </ul>
+
+      <!-- Mapa -->
+      <div class="ratio ratio-16x9 mt-auto">
+        <iframe
+          class="map-embed rounded"
+          src=""
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <footer id="site-footer" class="pt-5 text-light bg-dark">
+  <div class="container">
+
+    <!-- Franja principal -->
+    <div class="row g-4 pb-4">
+
+      <!-- Marca -->
+    <div class="col-12 col-md-6 col-lg-4">
+  <div class="d-flex align-items-center gap-3 mb-3">
+    <img src="LOGO.png" alt="SuperVolante" class="footer-logo" />
+    <strong class="fs-5">creaciones19</strong>
+  </div>
+
+  <p class="footer-text">
+    Micrositios y landing pages enfocados en conversión: WhatsApp, pagos,
+    video, galería y más. Hechos para emprendedores y profesionales que
+    quieren resultados sin complicaciones.
+  </p>
+
+  <div class="d-flex gap-2 mt-3">
+    <a class="btn btn-outline-light btn-sm rounded-pill px-3"
+       href="https://wa.me/523343340062?text=Hola,%20me%20interesa%20información%20de%20sus%20servicios"
+       target="_blank"
+       rel="noopener noreferrer">
+      <i class="bi bi-whatsapp me-1"></i> Escríbenos
+    </a>
+
+    <a class="btn btn-outline-light btn-sm rounded-pill px-3"
+       href="mailto:creaciones19@gmail.com?subject=Información&body=Hola,%20me%20interesa%20saber%20más">
+      <i class="bi bi-envelope me-1"></i> Correo
+    </a>
+  </div>
+</div>
+
+      <!-- Enlaces -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h6 class="footer-title">Enlaces</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#about">¿Qué es?</a></li>
+          <li><a href="#services">Servicios y Planes</a></li>
+          <li><a href="#directorio">Directorio</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Servicios -->
+      <div class="col-6 col-md-3 col-lg-3">
+        <h6 class="footer-title">Soluciones</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a href="#services">Micro-sitio Básico</a></li>
+          <li><a href="#services">Avanzado (Más vendido)</a></li>
+          <li><a href="#services">Ejecutivo</a></li>
+          <li><a href="#services">Empresarial</a></li>
+          <li><a href="#services">Landing Pages</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+  <div class="col-12 col-lg-3">
+  <h6 class="footer-title">Contacto</h6>
+  <ul class="list-unstyled footer-contact">
+    <li>
+      <i class="bi bi-geo-alt-fill"></i> Roma Sur
+    </li>
+
+    <li>
+      <i class="bi bi-telephone-fill"></i>
+      <a href="https://wa.me/523343340062" target="_blank" rel="noopener noreferrer">
+        3343340062
+      </a>
+    </li>
+
+    <li>
+      <i class="bi bi-envelope-fill"></i>
+      <a href="mailto:creaciones19@gmail.com?subject=Información&body=Hola,%20me%20interesa%20saber%20más">
+        creaciones19@gmail.com
+      </a>
+    </li>
+  </ul>
+
+  <div class="footer-social mt-2">
+    <a href="https://wa.me/523343340062" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+  </div>
+</div>
+
+    </div>
+
+    <hr class="footer-divider">
+
+    <!-- Franja legal -->
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center py-3 small">
+      <div>
+        © <span id="year"></span> <strong>Creaciones19</strong> — Todos los derechos reservados
+      </div>
+      <ul class="nav small mt-2 mt-lg-0">
+        <li class="nav-item"><a class="nav-link px-2" href="#">Aviso de Privacidad</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#">Términos y Condiciones</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>
+  // ===== AÑO FOOTER =====
+document.addEventListener("DOMContentLoaded", () => {
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
+
+// ===== AOS (animaciones de secciones) =====
+// OJO: debes tener el CSS de AOS en el <head>:
+// <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.AOS) {
+    AOS.init({
+      duration: 900,
+      easing: "ease-out-cubic",
+      once: true,          // anima solo una vez
+      offset: 80,          // empieza un poquito antes
+      delay: 40
+    });
+  }
+});
+
+// ===== NAVBAR "SHRINK" cuando bajas =====
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".navbar");
+  if (!nav) return;
+
+  const onScroll = () => {
+    if (window.scrollY > 20) nav.classList.add("navbar-shrink");
+    else nav.classList.remove("navbar-shrink");
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+});
+
+// ===== SCROLL SUAVE con offset (para navbar sticky) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.querySelector(".navbar");
+  const navH = nav ? nav.offsetHeight : 0;
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href");
+      if (!id || id === "#") return;
+
+      const target = document.querySelector(id);
+      if (!target) return;
+
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - (navH + 8);
+
+      window.scrollTo({ top, behavior: "smooth" });
+
+      // Cierra el menú en móvil (bootstrap collapse)
+      const menu = document.getElementById("menu");
+      if (menu && menu.classList.contains("show")) {
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(menu);
+        bsCollapse.hide();
+      }
+    });
+  });
+});
+
+// ===== CTA Comprar por WhatsApp (Planes) =====
+function enviarWhatsapp(plan) {
+const phone = "523343340062"; // México +52
+const msg = "Hola, me interesa más información. ¿Me das info y cómo se contrata?";
+const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+window.open(url, "_blank", "noopener,noreferrer");
+
+}
+
+// ===== FORM CONTACTO -> ENVÍA A WHATSAPP =====
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("c-nombre")?.value?.trim() || "";
+    const tel = document.getElementById("c-telefono")?.value?.trim() || "";
+    const mensaje = document.getElementById("c-mensaje")?.value?.trim() || "";
+
+   const phone = "523343340062"; // WhatsApp México +52
+const text =
+  `Hola, soy ${nombre}.\n` +
+  `Tel: ${tel}\n\n` +
+  `${mensaje || "Me interesa información de sus servicios."}`;
+
+const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+window.open(url, "_blank", "noopener,noreferrer");
+
+  });
+});
+
+// ===== CAROUSEL: interval y “feel” más pro =====
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.getElementById("heroCarousel");
+  if (!hero || !window.bootstrap) return;
+
+  // Evita que se sienta “tieso”
+  bootstrap.Carousel.getOrCreateInstance(hero, {
+    interval: 5200,
+    pause: false,
+    ride: "carousel",
+    touch: true,
+    wrap: true
+  });
+});
+
+// ===== Opcional: resaltar link activo según sección (se siente pro) =====
+document.addEventListener("DOMContentLoaded", () => {
+  const links = Array.from(document.querySelectorAll(".navbar .nav-link"))
+    .filter(a => a.getAttribute("href")?.startsWith("#"));
+
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const id = "#" + entry.target.id;
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === id));
+    });
+  }, { root: null, threshold: 0.35 });
+
+  sections.forEach(sec => obs.observe(sec));
+});
+
+</script>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
