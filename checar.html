@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card Centrada</title>
+
+<style>
+
+body{
+    margin:0;
+  background: radial-gradient(circle at center, #a1006b 0%, #5a0040 40%, #2b002b 100%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:'Segoe UI', sans-serif;
+}
+
+/* CONTENEDOR */
+.wrapper{
+    width:800px;
+}
+
+/* CARD */
+.card{
+    position:relative;
+    width:100%;
+    height:320px;
+    background:#ffffff;
+    border-radius:25px;
+    border:4px solid #222;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 60px;
+    cursor:pointer;
+    transition:0.6s cubic-bezier(.25,.8,.25,1);
+    
+    overflow:visible;
+    perspective:1200px;
+}
+
+/* TEXTO (LADO IZQUIERDO) */
+.content{
+    width:45%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    text-align:left;
+    transition:0.5s ease;
+}
+
+.content h2{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.content p{
+    font-size:15px;
+    color:#555;
+    line-height:1.6;
+}
+
+/* IMAGEN (LADO DERECHO) */
+.persona-container{
+    width:45%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:0.8s cubic-bezier(.25,.8,.25,1);
+    transform-style:preserve-3d;
+}
+
+/* IMAGEN MÁS PEQUEÑA DENTRO */
+.persona{
+    height:200px;
+    transition:0.8s cubic-bezier(.25,.8,.25,1);
+    filter:drop-shadow(0 40px 50px rgba(0,0,0,0.35));
+}
+
+/* CUANDO SE ACTIVA LA CARD */
+.card.active .persona-container{
+    transform:translateX(-260px) scale(1.3) rotateY(-15deg);
+}
+
+/* IMAGEN CRECE AL SALIR */
+.card.active .persona{
+    height:300px;
+}
+
+/* TEXTO DESAPARECE SUAVE */
+.card.active .content{
+    opacity:0;
+    transform:translateX(-30px);
+}
+
+/* RESALTE */
+.card.active{
+    box-shadow:0 30px 60px rgba(0,0,0,0.25);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="card" id="card">
+
+        <div class="content">
+            <h2>Tratamiento Facial</h2>
+            <p>
+                Atención profesional y resultados visibles para una piel saludable y radiante.
+            </p>
+             <p>
+                👉 Toca la imagen y tráela hacia ti
+            </p>
+        </div>
+
+        <div class="persona-container">
+            <img src="cubo6.png" class="persona">
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const card = document.getElementById("card");
+
+card.addEventListener("click", () => {
+    card.classList.toggle("active");
+});
+
+</script>
+
+</body>
+</html>
