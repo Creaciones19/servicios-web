@@ -1482,6 +1482,511 @@ section{ position:relative; }
 
 
 
+
+/* PORTAFOLIO INTEGRADO: mantiene visible la laptop y sus controles */
+.portafolio-integrado {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #101a2a;
+}
+
+.portafolio-integrado iframe {
+    display: block;
+    width: 100%;
+    height: min(900px, 110vh);
+    min-height: 640px;
+    border: 0;
+}
+
+@media (max-width: 700px) {
+    .portafolio-integrado iframe {
+        height: 740px;
+        min-height: 0;
+    }
+}
+
+
+/* ============================================================
+   PORTAFOLIO: FONDO DE LUCES ROSAS CON DESTELLOS ANIMADOS
+   Archivo de imagen: fondo_destellos_rosa.jpg
+   ============================================================ */
+#portafolio-interactivo,
+#otros-proyectos {
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+    background-color: #17172c;
+    background-image: linear-gradient(rgba(15, 12, 30, .27), rgba(15, 12, 30, .42)),
+                      url("fondo_destellos_rosa.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Destellos rosados que se mueven sin bloquear los botones. */
+#portafolio-interactivo::before,
+#otros-proyectos::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255, 224, 250, .85) 0 1px, transparent 3px),
+        radial-gradient(circle, rgba(255, 142, 220, .8) 0 2px, transparent 5px),
+        radial-gradient(circle, rgba(255, 255, 255, .7) 0 1px, transparent 4px);
+    background-size: 155px 145px, 240px 210px, 320px 260px;
+    background-position: 0 0, 50px 70px, 120px 30px;
+    animation: moverDestellos 16s linear infinite;
+    opacity: .72;
+}
+
+@keyframes moverDestellos {
+    from { background-position: 0 0, 50px 70px, 120px 30px; opacity: .48; }
+    50% { opacity: .85; }
+    to { background-position: 80px -190px, -60px -230px, 200px -260px; opacity: .48; }
+}
+
+#portafolio-interactivo h2,
+#otros-proyectos h2 {
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 2px 18px rgba(0,0,0,.48);
+}
+
+#portafolio-interactivo .descripcion-portafolio,
+#otros-proyectos > .container > p {
+    color: #f5e8f4;
+    text-shadow: 0 2px 12px rgba(0,0,0,.45);
+}
+
+#portafolio-interactivo .portafolio-integrado {
+    border: 1px solid rgba(255, 220, 250, .35);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,.35);
+    background: #121a29;
+}
+
+#portafolio-interactivo .btn-abrir-portafolio {
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.65);
+    background: rgba(255,255,255,.14);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-weight: 600;
+}
+
+#portafolio-interactivo .btn-abrir-portafolio:hover {
+    background: rgba(255,255,255,.28);
+    color: #fff;
+}
+
+#otros-proyectos .service-card {
+    border: 1px solid rgba(255,255,255,.48);
+    background: rgba(255,255,255,.91);
+    backdrop-filter: blur(8px);
+    border-radius: 19px;
+    box-shadow: 0 14px 35px rgba(0,0,0,.22);
+}
+
+#otros-proyectos .service-card:hover {
+    box-shadow: 0 22px 45px rgba(0,0,0,.30);
+}
+
+#otros-proyectos .service-card .card-title { color: #263347; }
+#otros-proyectos .service-card .card-text { color: #626c7b; }
+
+@media (prefers-reduced-motion: reduce) {
+    #portafolio-interactivo::before,
+    #otros-proyectos::before { animation: none; }
+}
+
+
+/* ============================================================
+   TARJETAS DE CRISTAL TRANSLÚCIDO SOBRE EL FONDO ROSA
+   Se conserva la imagen y la legibilidad de cada proyecto.
+   ============================================================ */
+#otros-proyectos .service-card {
+    background: rgba(255, 255, 255, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    -webkit-backdrop-filter: blur(12px) saturate(115%);
+    backdrop-filter: blur(12px) saturate(115%);
+    box-shadow: 0 16px 42px rgba(9, 10, 30, 0.25);
+    overflow: hidden;
+}
+
+#otros-proyectos .service-card .card-body {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+#otros-proyectos .service-card .card-title {
+    color: #202436;
+    font-weight: 750;
+}
+
+#otros-proyectos .service-card .card-text {
+    color: #34394c;
+}
+
+#otros-proyectos .service-card:hover {
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0 22px 50px rgba(9, 10, 30, 0.30);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+    #otros-proyectos .service-card {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}
+
+
+/* ============================================================
+   FONDO GLOBAL: DESDE DEBAJO DEL HEADER HASTA EL FOOTER
+   El header conserva su imagen original.
+   ============================================================ */
+
+html {
+    background: #151528;
+}
+
+body {
+    position: relative;
+    background: #151528 !important;
+    color: #f9f5fa;
+}
+
+/* Una sola imagen continua, fija durante el desplazamiento. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(rgba(12, 12, 28, .16), rgba(12, 12, 28, .28)),
+                url("fondo_destellos_rosa.jpg") center center / cover no-repeat;
+}
+
+/* Luces sutiles sobre el fondo; nunca interceptan clics. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255, 211, 244, .8) 0 1px, transparent 3px),
+        radial-gradient(circle, rgba(255, 255, 255, .65) 0 1px, transparent 4px);
+    background-size: 205px 185px, 315px 260px;
+    animation: destellosGlobales 22s linear infinite;
+    opacity: .42;
+}
+
+@keyframes destellosGlobales {
+    from { background-position: 0 0, 70px 80px; opacity: .3; }
+    50% { opacity: .58; }
+    to { background-position: 130px -180px, -100px -240px; opacity: .3; }
+}
+
+/* Header sin modificaciones de su fondo, imagen ni controles. */
+body > header#home {
+    position: relative;
+    z-index: 1;
+}
+
+/* Fondo transparente en TODAS las secciones posteriores al header. */
+body > section,
+body > main,
+body > footer,
+body > section.bg-light,
+body > section.bg-white,
+body > section.bg-claro,
+body > footer.bg-dark,
+#about, #services, #portafolio-interactivo, #otros-proyectos,
+#nosotros, #directorio, #blog, #testimonios, #contacto,
+#site-footer {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Se eliminan los destellos duplicados por sección. */
+#portafolio-interactivo::before,
+#otros-proyectos::before {
+    content: none !important;
+}
+
+/* Cristal en los módulos y tarjetas, sin alterar fotografías. */
+body > section .card,
+body > section .service-card,
+body > section .pricing-card,
+body > section .plan-card,
+body > section .testimonial-card,
+body > section .bg-white,
+body > section .bg-light,
+body > section .bg-claro,
+body > section .accordion-item,
+body > section .modal-content,
+#site-footer .bg-dark {
+    background: rgba(255, 255, 255, .19) !important;
+    border: 1px solid rgba(255, 255, 255, .33);
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
+    box-shadow: 0 14px 34px rgba(12, 9, 27, .19);
+}
+
+body > section .card-body,
+body > section .service-card .card-body,
+body > section .card-header,
+body > section .card-footer {
+    background: transparent !important;
+}
+
+/* Imágenes y videos mantienen opacidad total. */
+body > section img,
+body > section video,
+body > section iframe {
+    opacity: 1;
+}
+
+/* Texto legible sobre el fondo luminoso y los módulos translúcidos. */
+body > section h1,
+body > section h2,
+body > section h3,
+body > section h4,
+body > section > .container > p,
+#site-footer h2,
+#site-footer h3,
+#site-footer p {
+    color: #fff !important;
+    text-shadow: 0 2px 13px rgba(11, 10, 28, .62);
+}
+
+body > section .card,
+body > section .service-card,
+body > section .card h3,
+body > section .card h4,
+body > section .card p,
+body > section .service-card .card-title,
+body > section .service-card .card-text {
+    color: #fff !important;
+    text-shadow: 0 1px 5px rgba(11, 10, 28, .4);
+}
+
+/* Mantener el visor del portafolio funcional y sus controles visibles. */
+#portafolio-interactivo .portafolio-integrado {
+    background: rgba(13, 17, 33, .48) !important;
+}
+
+/* Footer sobre el mismo fondo continuo. */
+#site-footer {
+    border-top: 1px solid rgba(255, 255, 255, .22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::after { animation: none; }
+}
+
+
+/* CONTRASTE Y LEGIBILIDAD EN TODO EL CUERPO; HEADER INTACTO */
+body > section:not(#portafolio-interactivo) { color: #fff; }
+body > section:not(#portafolio-interactivo) p,
+body > section:not(#portafolio-interactivo) li,
+body > section:not(#portafolio-interactivo) small,
+body > section:not(#portafolio-interactivo) label,
+body > section:not(#portafolio-interactivo) .text-muted,
+body > section:not(#portafolio-interactivo) .stat-label {
+    color: #fff !important;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, .78);
+}
+#services .service-card,
+#testimonios .t-card,
+#directorio .card,
+#otros-proyectos .card,
+#contacto .card {
+    background: rgba(16, 13, 36, .82) !important;
+    border: 1px solid rgba(255, 220, 245, .28);
+    color: #fff !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+#services .service-card h5,
+#services .service-card .feature-list li,
+#services .service-card .card-text,
+#testimonios .t-card h5,
+#otros-proyectos .card h3,
+#otros-proyectos .card h4 {
+    color: #fff !important;
+}
+#services .service-card .feature-list i,
+#services .service-card .bi-check-circle-fill { color: #3bea88 !important; }
+#services .service-card .btn { text-shadow: none !important; }
+#blog .row { justify-content: center; }
+#blog .row > .col-12 {
+    background: rgba(12, 11, 31, .82);
+    border: 1px solid rgba(255, 220, 245, .25);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 56px);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+#blog .blog-text {
+    color: #fff !important;
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.85;
+    text-shadow: 0 2px 7px rgba(0,0,0,.75);
+}
+#blog h2 { color: #fff !important; text-shadow: 0 2px 8px rgba(0,0,0,.7); }
+#site-footer, #site-footer a, #site-footer li { color: #fff !important; }
+@media(max-width:767px) { #blog .row > .col-12 { padding:24px 20px; } }
+
+
+/* ============================================================
+   CORRECCION FINAL DE CONTRASTE: SERVICIOS Y LANDING PAGE
+   Se conserva la animacion original de Landing Page (video.json).
+   Se mantienen todos los precios, botones y enlaces originales.
+   ============================================================ */
+#services .service-card,
+#services .card.service-card,
+#otros-proyectos .card.service-card {
+    background: rgba(29, 15, 43, 0.88) !important;
+    border: 1px solid rgba(255, 221, 245, 0.34) !important;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 34px rgba(8, 3, 20, 0.4) !important;
+}
+#services .service-card .card-body,
+#services .service-card .card-title,
+#services .service-card .card-text,
+#services .service-card .feature-list,
+#services .service-card .feature-list li,
+#services .service-card .feature-list li span,
+#services .service-card .feature-list li strong {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+#services .service-card .feature-list li {
+    font-size: 0.93rem;
+    line-height: 1.48;
+}
+#services .service-card .feature-list i.bi-check-circle-fill {
+    color: #55e58c !important;
+}
+#services .service-card p.fw-bold.mt-auto.mb-3 {
+    color: #ffffff !important;
+    font-size: 1.4rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6) !important;
+    padding: 12px 5px 5px;
+}
+#services .service-card .pay-badge {
+    color: #23162d !important;
+    background: #f7effa !important;
+    text-shadow: none !important;
+}
+#services .service-card .btn { opacity: 1 !important; }
+#services .service-card .badge-featured {
+    color: #ffffff !important;
+    background: #970a66 !important;
+}
+#blog .row > .col-lg-6 {
+    min-width: 0;
+}
+#blog .row > .col-lg-6:last-child {
+    background: rgba(25, 13, 40, 0.86);
+    border: 1px solid rgba(255, 221, 245, 0.3);
+    border-radius: 20px;
+    padding: clamp(24px, 3vw, 40px);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+}
+#blog h2,
+#blog p.blog-text,
+#blog p.blog-text strong,
+#blog p.blog-text em {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+#blog p.blog-text {
+    font-size: clamp(16px, 1.4vw, 19px) !important;
+    line-height: 1.75 !important;
+}
+#blog .blog-img {
+    background: rgba(25, 13, 40, 0.3);
+    border: 1px solid rgba(255,255,255,.18);
+}
+@media (max-width: 991px) {
+    #blog .row > .col-lg-6:last-child { margin-top: 24px; }
+}
+
+
+
+/* Ajustes puntuales: cuatro planes desplegables y contacto compacto. */
+#services .service-card .feature-list > li:nth-child(n+5) { display:none !important; }
+#services .service-card.detalles-abiertos .feature-list > li { display:flex !important; }
+#services .service-card .ver-detalles { align-self:center; border:1px solid #f7c6ed; background:rgba(255,255,255,.16); color:#fff; padding:9px 18px; border-radius:24px; margin:8px 0 16px; cursor:pointer; font-weight:700; }
+#services .service-card .ver-detalles:hover { background:rgba(255,255,255,.3); }
+#services .service-card .precio-plan { padding:10px; background:rgba(255,255,255,.12); border-radius:12px; margin-bottom:12px!important; }
+#services .service-card .service-icon { width:58px; height:58px; }
+#services .service-card .pay-badge { background:#f8ecf6!important; color:#24142d!important; padding:5px 8px; border-radius:6px; font-weight:700; }
+#contacto { padding-top:28px!important; padding-bottom:30px!important; }
+#contacto h2 { margin-bottom:16px!important; }
+#contacto .row { --bs-gutter-y:14px; }
+#contacto .card-body { padding:16px 20px!important; }
+#contacto .form-control-lg { padding:8px 12px; font-size:1rem; }
+#contacto .mb-3 { margin-bottom:10px!important; }
+#contacto textarea { min-height:68px; }
+#contacto .map-embed { max-height:190px; }
+#blog .blog-mas[hidden] { display:none!important; }
+
+
+
+/* AJUSTE EXCLUSIVO DE COLORES Y TRANSPARENCIA.
+   Se conservan la estructura, el contenido y el JavaScript original. */
+#services .service-card,
+#services .card.service-card,
+#otros-proyectos .service-card,
+#testimonios .t-card,
+#directorio .card,
+#contacto .card {
+  background: rgba(24, 13, 39, 0.66) !important;
+  border-color: rgba(255, 224, 247, 0.34) !important;
+  color: #fff !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+#services .service-card:hover,
+#otros-proyectos .service-card:hover,
+#testimonios .t-card:hover {
+  background: rgba(24, 13, 39, 0.76) !important;
+}
+#services .service-card h5,
+#services .service-card p,
+#services .service-card li,
+#otros-proyectos .service-card h3,
+#otros-proyectos .service-card h4,
+#otros-proyectos .service-card p,
+#testimonios .t-card p,
+#directorio .card p,
+#contacto .card p,
+#contacto .card label {
+  color: #fff !important;
+}
+#services .service-card .pay-badge {
+  background: #f7effa !important;
+  color: #23162d !important;
+}
+
 </style>
 
 
@@ -1556,6 +2061,7 @@ section{ position:relative; }
 
           <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
 
+          <li class="nav-item"><a class="nav-link" href="#portafolio-interactivo">Portafolio</a></li>
           <li class="nav-item"><a class="nav-link" href="#directorio">Directorio</a></li>
 
           <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
@@ -1894,7 +2400,8 @@ section{ position:relative; }
 
 
 
-      <p class="fw-bold mt-auto mb-3">$450 MXN</p>
+      <button type="button" class="ver-detalles" aria-expanded="false">Ver más características</button>
+      <p class="fw-bold mt-auto mb-3 precio-plan">$450 MXN</p>
 
       <a href="https://creaciones19.github.io/volanteginecologa/" target="_blank" rel="noopener noreferrer"
 
@@ -1962,7 +2469,8 @@ section{ position:relative; }
 
 
 
-      <p class="fw-bold mt-auto mb-3">$800.00 MXN</p>
+      <button type="button" class="ver-detalles" aria-expanded="false">Ver más características</button>
+      <p class="fw-bold mt-auto mb-3 precio-plan">$800.00 MXN</p>
 
       <a href="https://creaciones19.github.io/volantetarjeta/" target="_blank" rel="noopener noreferrer"
 
@@ -2050,7 +2558,8 @@ section{ position:relative; }
 
 
 
-      <p class="fw-bold mt-auto mb-3">$4,200.00 MXN</p>
+      <button type="button" class="ver-detalles" aria-expanded="false">Ver más características</button>
+      <p class="fw-bold mt-auto mb-3 precio-plan">$4,200.00 MXN</p>
 
       <a href="https://creaciones19.github.io/lamonaramona/#menu" target="_blank" rel="noopener noreferrer"
 
@@ -2142,7 +2651,8 @@ section{ position:relative; }
 
 
 
-      <p class="fw-bold mt-auto mb-3">Cotizar</p>
+      <button type="button" class="ver-detalles" aria-expanded="false">Ver más características</button>
+      <p class="fw-bold mt-auto mb-3 precio-plan">Cotizar</p>
 
       <a href="https://creaciones19.github.io/DG-RECUPERADORA/index.html"
 
@@ -2173,6 +2683,36 @@ section{ position:relative; }
     </div>
 
   </section>
+
+<!-- ============================================================
+     PORTAFOLIO INTERACTIVO DE PROYECTOS
+     Archivo independiente: indexportafolio.html
+     ============================================================ -->
+<section id="portafolio-interactivo" class="py-5" aria-labelledby="titulo-portafolio" style="background: #101a2a; color: #ffffff;">
+    <div class="container-fluid px-3 px-lg-5">
+        <h2 id="titulo-portafolio" class="text-center mb-3">Portafolio interactivo</h2>
+        <p class="text-center mb-4" style="color: #c9d2df;">
+            Explore algunos de nuestros proyectos web directamente desde esta página.
+        </p>
+
+        <div class="portafolio-integrado">
+            <iframe
+                src="indexportafolio.html"
+                title="Portafolio interactivo de proyectos web"
+                loading="lazy"
+                allow="fullscreen; autoplay; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="indexportafolio.html" target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline-light">
+                Abrir portafolio en pantalla completa
+            </a>
+        </div>
+    </div>
+</section>
 
 <!-- SECCIÓN ADICIONAL: OTROS PROYECTOS -->
 <section id="otros-proyectos" class="py-5 bg-claro">
@@ -2627,7 +3167,8 @@ document.getElementById("demoBox").addEventListener("click", function() {
 
         <div class="text-center text-lg-start mt-4">
 
-          <a href="#" class="btn btn-primary blog-btn">Seguir leyendo →</a>
+          <button type="button" class="btn btn-primary blog-btn" id="blog-leer-mas" aria-expanded="false">Seguir leyendo →</button>
+          <p class="blog-text blog-mas mt-3" id="blog-texto-extra" hidden>Una Landing Page puede presentar su oferta, resolver dudas frecuentes y facilitar que sus clientes se comuniquen directamente por WhatsApp.</p>
 
         </div>
 
@@ -3613,6 +4154,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <script src="assets/main.js"></script>
 
+
+<script>
+/* Controles adicionales. No se modifica el JavaScript original de Lottie. */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("#services .service-card .ver-detalles").forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      const tarjeta = boton.closest(".service-card");
+      const abierto = tarjeta.classList.toggle("detalles-abiertos");
+      boton.setAttribute("aria-expanded", String(abierto));
+      boton.textContent = abierto ? "Ver menos características" : "Ver más características";
+    });
+  });
+  const leer = document.getElementById("blog-leer-mas");
+  const contenido = document.getElementById("blog-texto-extra");
+  if (leer && contenido) {
+    leer.addEventListener("click", function () {
+      contenido.hidden = !contenido.hidden;
+      const abierto = !contenido.hidden;
+      leer.setAttribute("aria-expanded", String(abierto));
+      leer.textContent = abierto ? "Leer menos ↑" : "Seguir leyendo →";
+    });
+  }
+});
+</script>
 </body>
 
 </html>
