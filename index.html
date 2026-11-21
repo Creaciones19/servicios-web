@@ -2789,7 +2789,7 @@ body > section:not(#portafolio-interactivo) .stat-label {
     .acciones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px auto 0; }
     .acciones button, .acciones a { border: 1px solid #69788c; border-radius: 6px; padding: 11px 17px; background: rgba(255,255,255,.42); color: #172238; font-size: 13px; text-decoration: none; cursor: pointer; }
     .acciones button:hover, .acciones a:hover { background: rgba(255,255,255,.8); }
-    .nota { text-align: center; color: #354157; font-size: 12px; line-height: 1.6; margin: 14px auto 0; max-width: 780px; }
+    .nota { text-align: center; color: white; font-size: 12px; line-height: 1.6; margin: 14px auto 0; max-width: 780px; }
     .ampliado .contenedor { width: min(1500px, 98%); }
     .ampliado .pantalla { height: min(75vh, 820px); }
     @media (max-width: 650px) {
@@ -2935,7 +2935,7 @@ body > section:not(#portafolio-interactivo) .stat-label {
 
     function ajustarAlturaIntegrada() {
       const altoVentana = parent.visualViewport?.height ?? parent.innerHeight;
-      document.documentElement.style.setProperty('--alto-visor-movil', (altoVentana * 0.76) + 'px');
+      document.documentElement.style.setProperty('--alto-visor-movil', (altoVentana * 0.70) + 'px');
       marcoIntegrado.style.height = Math.ceil(contenidoPortafolio.getBoundingClientRect().height) + 'px';
     }
 
