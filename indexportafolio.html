@@ -73,6 +73,36 @@
       color: #ffffff;
       text-shadow: 0 2px 8px rgba(0,0,0,.65);
     }
+  
+    /* SOLO RESPONSIVE: pantalla horizontal y selector debajo */
+    @media (max-width: 700px) {
+      .contenedor { width: 96%; padding: 14px 0 20px; }
+      .encabezado { margin-bottom: 12px; }
+      .proyecto-titulo { margin-bottom: 10px; min-height: 0; }
+      .zona { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+      .laptop { width: 92%; max-width: 100%; margin: 0 auto; }
+      .marco { border-width: 5px; border-bottom-width: 8px; padding: 2px; }
+      .pantalla, .ampliado .pantalla { height: auto; min-height: 0; aspect-ratio: 16 / 9; }
+      .pantalla iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .teclado { height: 12px; }
+      .barra-proyectos { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 7px; max-height: none; overflow: visible; padding: 3px; }
+      .numero { width: 40px; min-height: 38px; flex: 0 0 40px; font-size: 12px; }
+      .acciones { margin-top: 13px; }
+    }
+
+    /* En móvil, los proyectos seleccionados conservan su diseño horizontal de escritorio,
+       reducido proporcionalmente para que no se corte a los lados. */
+    @media (max-width: 700px) {
+      .pantalla.vista-escritorio iframe {
+        inset: auto;
+        top: 0;
+        left: 0;
+        width: 1000px;
+        height: 562.5px;
+        transform-origin: top left;
+        transform: scale(var(--escala-proyecto, .32));
+      }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +131,7 @@
       <button id="recargar" type="button">Reiniciar página</button>
       <a id="abrirOriginal" href="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" target="_blank" rel="noopener noreferrer">Abrir proyecto original</a>
     </div>
-    <p class="nota">Seleccione un número en la barra vertical para cambiar de proyecto. Navegue directamente dentro de la laptop con el mouse. Algunos sitios pueden limitar su visualización o interacción dentro de otra página.</p>
+    <p class="nota">Seleccione un número para cambiar de proyecto. Navegue directamente dentro de la laptop con el mouse. Algunos sitios pueden limitar su visualización o interacción dentro de otra página.</p>
   </main>
 
   <script>
@@ -130,6 +160,20 @@
     const recargar = document.getElementById('recargar');
     let proyectoActual = 0;
 
+    // Ajuste visual para los 12 proyectos; mantiene intacto el ajuste anterior del 2, 3, 6 y 9.
+    // El iframe sigue siendo navegable, pero se muestra como una página horizontal.
+    const pantalla = document.querySelector('.pantalla');
+    function ajustarVistaProyecto() {
+      const usarEscritorio = window.innerWidth <= 700 && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(proyectoActual);
+      pantalla.classList.toggle('vista-escritorio', usarEscritorio);
+      if (usarEscritorio) {
+        pantalla.style.setProperty('--escala-proyecto', String(pantalla.clientWidth / 1000));
+      } else {
+        pantalla.style.removeProperty('--escala-proyecto');
+      }
+    }
+    window.addEventListener('resize', ajustarVistaProyecto);
+
     function seleccionarProyecto(indice) {
       proyectoActual = indice;
       const proyecto = proyectos[indice];
@@ -137,6 +181,7 @@
       visor.title = proyecto.nombre;
       titulo.textContent = proyecto.nombre;
       abrirOriginal.href = proyecto.url;
+      ajustarVistaProyecto();
 
       document.querySelectorAll('.numero').forEach(function (boton, posicion) {
         const activo = posicion === indice;

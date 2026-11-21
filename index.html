@@ -1987,6 +1987,21 @@ body > section:not(#portafolio-interactivo) .stat-label {
   color: #23162d !important;
 }
 
+
+/* AJUSTE RESPONSIVE EXCLUSIVO DEL PORTAFOLIO INTEGRADO.
+   No modifica el diseño ni los proyectos del portafolio. */
+@media (max-width: 700px) {
+  #portafolio-interactivo .container-fluid { padding-left: 8px !important; padding-right: 8px !important; }
+  #portafolio-interactivo .portafolio-integrado { width: 100%; max-width: 100%; }
+  #portafolio-interactivo .portafolio-integrado > iframe {
+    display: block;
+    width: 100%;
+    height: 560px; /* altura inicial; se ajusta al contenido al cargar */
+    min-height: 0;
+    max-width: none;
+    border: 0;
+  }
+}
 </style>
 
 
@@ -3184,7 +3199,37 @@ document.getElementById("demoBox").addEventListener("click", function() {
 
 
 
-<!-- Lottie (una sola vez en toda la página, antes de </body>) -->
+<!-- Lottie (una sola vez en toda la página, antes de 
+<script>
+/* Ajustar únicamente la altura del portafolio integrado al tamaño real
+   de su contenido responsive, sin modificar el portafolio interior. */
+(function () {
+  const marco = document.querySelector('#portafolio-interactivo .portafolio-integrado > iframe');
+  if (!marco) return;
+  let observador;
+  function ajustar() {
+    try {
+      const doc = marco.contentDocument;
+      if (!doc || !doc.documentElement) return;
+      const alto = Math.max(doc.documentElement.scrollHeight, doc.body ? doc.body.scrollHeight : 0);
+      if (alto > 0) marco.style.height = Math.ceil(alto + 4) + 'px';
+    } catch (error) { /* Se conserva la altura CSS si no hay acceso al contenido. */ }
+  }
+  marco.addEventListener('load', function () {
+    if (observador) observador.disconnect();
+    ajustar();
+    try {
+      if (typeof ResizeObserver !== 'undefined' && marco.contentDocument) {
+        observador = new ResizeObserver(ajustar);
+        observador.observe(marco.contentDocument.documentElement);
+      }
+    } catch (error) {}
+  });
+  window.addEventListener('resize', ajustar);
+  if (marco.contentDocument && marco.contentDocument.readyState === 'complete') ajustar();
+})();
+</script>
+</body>) -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
 
