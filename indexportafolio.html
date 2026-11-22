@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio de proyectos | Experiencias digitales</title>
   <style>
-    :root {
-      color-scheme: light;
-      --fondo: #0a111e;
-      --panel: #142136;
-      --texto: #f5f7fb;
-      --secundario: #aebbcf;
-      --plata: #d5dce6;
-    }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      background: transparent;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar { display: none; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -23,13 +20,11 @@
       color: #182235;
       font-family: Arial, Helvetica, sans-serif;
     }
-    html { background: transparent; }
     .contenedor { width: min(1150px, 96%); margin: 0 auto; padding: 26px 0 35px; }
     .encabezado { text-align: center; margin: 0 auto 22px; }
     .encabezado h1 { font-size: clamp(22px, 3vw, 34px); letter-spacing: .16em; margin: 0 0 10px; }
     .encabezado p { color: #354157; font-size: 12px; letter-spacing: .15em; margin: 0; }
     .proyecto-titulo { text-align: center; min-height: 28px; margin: 0 0 15px; font-size: clamp(13px, 1.7vw, 19px); font-weight: 500; letter-spacing: .1em; }
-    .zona { display: grid; grid-template-columns: minmax(0, 1fr) 64px; align-items: center; gap: 16px; }
     .laptop { min-width: 0; width: 100%; max-width: 920px; margin: 0 auto; filter: drop-shadow(0 20px 20px rgba(0,0,0,.5)); }
     .marco {
       border: 9px solid #3e4c5f;
@@ -41,53 +36,64 @@
     }
     .pantalla { position: relative; height: clamp(250px, 44vw, 475px); overflow: hidden; background: #f1f2f4; border-radius: 3px; }
     .pantalla iframe { width: 100%; height: 100%; border: 0; display: block; background: #f1f2f4; }
-    .teclado { width: 108%; margin-left: -4%; height: 19px; background: linear-gradient(#e0e5ec, #8391a4 60%, #384659); border-radius: 3px 3px 50% 50%; box-shadow: 0 6px 8px #0006; }
-    .teclado::after { content: ""; display: block; width: 17%; height: 5px; margin: 0 auto; background: #aeb7c3; border-radius: 0 0 8px 8px; }
-    .barra-proyectos { display: flex; flex-direction: column; gap: 6px; max-height: 480px; overflow-y: auto; padding: 4px 7px 4px 3px; scrollbar-width: thin; scrollbar-color: #8795ab transparent; }
-    .barra-proyectos::-webkit-scrollbar { width: 7px; }
-    .barra-proyectos::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
-    .barra-proyectos::-webkit-scrollbar-thumb { background: #8795ab; border-radius: 10px; }
-    .numero { width: 48px; min-height: 43px; border: 1px solid #526178; border-radius: 7px; background: rgba(255,255,255,.38); color: #172238; font-size: 15px; cursor: pointer; }
-    .numero:hover { background: rgba(255,255,255,.75); }
-    .numero.activo { background: var(--plata); color: #0c1522; border-color: var(--plata); }
+    .teclado {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 48px));
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 14px 14px;
+      background: linear-gradient(#c3ccd9, #758499);
+      border: 1px solid #58667a;
+      border-bottom: 5px solid #384659;
+      border-radius: 0 0 18px 18px;
+    }
+
+    .numero {
+      min-width: 0;
+      min-height: 42px;
+      padding: 0;
+      border: 1px solid #101923;
+      border-radius: 5px;
+      background: #253246;
+      color: #fff;
+      box-shadow: 0 2px 0 #101923;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .numero:hover { background: #354963; }
+    .numero:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    .numero.activo { background: #eff4fa; color: #0c1522; }
+
     .acciones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px auto 0; }
     .acciones button, .acciones a { border: 1px solid #69788c; border-radius: 6px; padding: 11px 17px; background: rgba(255,255,255,.42); color: #172238; font-size: 13px; text-decoration: none; cursor: pointer; }
     .acciones button:hover, .acciones a:hover { background: rgba(255,255,255,.8); }
     .nota { text-align: center; color: white; font-size: 12px; line-height: 1.6; margin: 14px auto 0; max-width: 780px; }
     .ampliado .contenedor { width: min(1500px, 98%); }
+    .ampliado .laptop { max-width: 1350px; }
     .ampliado .pantalla { height: min(75vh, 820px); }
-    @media (max-width: 650px) {
-      .contenedor { width: 98%; padding-top: 18px; }
-      .zona { grid-template-columns: minmax(0, 1fr) 46px; gap: 5px; }
-      .marco { border-width: 5px; border-bottom-width: 8px; padding: 2px; }
-      .pantalla { height: 56vh; min-height: 280px; }
-      .barra-proyectos { padding-right: 3px; max-height: 56vh; }
-      .numero { width: 37px; min-height: 37px; font-size: 12px; }
-      .teclado { height: 12px; }
-      .acciones { gap: 6px; }
-      .acciones button, .acciones a { padding: 9px; font-size: 12px; }
-    }
-  
-    /* ÚNICO AJUSTE: títulos blancos sobre el fondo transparente */
+
     .encabezado h1, .encabezado p, .proyecto-titulo {
       color: #ffffff;
       text-shadow: 0 2px 8px rgba(0,0,0,.65);
     }
-  
-    /* SOLO RESPONSIVE: pantalla horizontal y selector debajo */
+
     @media (max-width: 700px) {
       .contenedor { width: 96%; padding: 14px 0 20px; }
       .encabezado { margin-bottom: 12px; }
       .proyecto-titulo { margin-bottom: 10px; min-height: 0; }
-      .zona { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
-      .laptop { width: 92%; max-width: 100%; margin: 0 auto; }
       .marco { border-width: 5px; border-bottom-width: 8px; padding: 2px; }
       .pantalla, .ampliado .pantalla { height: auto; min-height: 0; aspect-ratio: 16 / 9; }
       .pantalla iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
-      .teclado { height: 12px; }
-      .barra-proyectos { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 7px; max-height: none; overflow: visible; padding: 3px; }
-      .numero { width: 40px; min-height: 38px; flex: 0 0 40px; font-size: 12px; }
-      .acciones { margin-top: 13px; }
+      .teclado {
+        grid-template-columns: repeat(6, minmax(0, 48px));
+        gap: 6px;
+        padding: 8px 10px 12px;
+      }
+
+      .numero { font-size: 13px; }
+      .acciones { gap: 6px; margin-top: 13px; }
+      .acciones button, .acciones a { padding: 9px; font-size: 12px; }
     }
 
     /* En móvil, los proyectos seleccionados conservan su diseño horizontal de escritorio,
@@ -103,27 +109,33 @@
         transform: scale(var(--escala-proyecto, .32));
       }
     }
+    @media (width > 700px) {
+      .contenedor { zoom: 0.90; }
+    }
+
+    .encabezado h2 {
+  color: #ffffff;
+}
   </style>
 </head>
 <body>
   <main class="contenedor">
     <header class="encabezado">
       <h1>PORTAFOLIO DIGITAL</h1>
-      <p>EXPERIENCIAS WEB · PROYECTOS INTERACTIVOS</p>
+      <h2>EXPERIENCIAS WEB · PROYECTOS INTERACTIVOS</h2>
     </header>
 
-    <h2 class="proyecto-titulo" id="tituloProyecto">CATÁLOGO DE REMATES BANCARIOS</h2>
+    <h3 class="proyecto-titulo" id="tituloProyecto">Explora algunos de nuestros proyectos web directamente desde esta página</h3>
 
     <section class="zona" aria-label="Explorador de proyectos">
       <div class="laptop">
         <div class="marco">
           <div class="pantalla">
-            <iframe id="visor" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="visor" scrolling="no" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
-        <div class="teclado" aria-hidden="true"></div>
+        <nav class="teclado" id="tecladoProyectos" aria-label="Seleccionar proyecto"></nav>
       </div>
-      <nav class="barra-proyectos" id="barraProyectos" aria-label="Seleccionar proyecto"></nav>
     </section>
 
     <div class="acciones">
@@ -131,12 +143,11 @@
       <button id="recargar" type="button">Reiniciar página</button>
       <a id="abrirOriginal" href="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" target="_blank" rel="noopener noreferrer">Abrir proyecto original</a>
     </div>
-    <p class="nota">Seleccione un número para cambiar de proyecto. Navegue directamente dentro de la laptop con el mouse. Algunos sitios pueden limitar su visualización o interacción dentro de otra página.</p>
+    <p class="nota">Seleccione una tecla para cambiar de proyecto. Use «Abrir proyecto original» para ver la página completa.</p>
   </main>
 
   <script>
     // Modifique libremente los nombres y enlaces de sus proyectos.
-    // Los dos proyectos con acceso restringido están al final (10 y 11).
     const proyectos = [
       { nombre: 'CATÁLOGO DE REMATES BANCARIOS', url: 'https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html' },
       { nombre: 'VILLA ENCANTADA', url: 'https://creaciones19.github.io/paginawebvillaencantada/' },
@@ -154,14 +165,12 @@
 
     const visor = document.getElementById('visor');
     const titulo = document.getElementById('tituloProyecto');
-    const barra = document.getElementById('barraProyectos');
+    const teclado = document.getElementById('tecladoProyectos');
     const abrirOriginal = document.getElementById('abrirOriginal');
     const ampliar = document.getElementById('ampliar');
     const recargar = document.getElementById('recargar');
     let proyectoActual = 0;
 
-    // Ajuste visual para los 12 proyectos; mantiene intacto el ajuste anterior del 2, 3, 6 y 9.
-    // El iframe sigue siendo navegable, pero se muestra como una página horizontal.
     const pantalla = document.querySelector('.pantalla');
     function ajustarVistaProyecto() {
       const usarEscritorio = window.innerWidth <= 700 && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(proyectoActual);
@@ -179,9 +188,9 @@
       const proyecto = proyectos[indice];
       visor.src = proyecto.url;
       visor.title = proyecto.nombre;
-      titulo.textContent = proyecto.nombre;
+    
       abrirOriginal.href = proyecto.url;
-      ajustarVistaProyecto();
+      ajustarVistaProyecto();a
 
       document.querySelectorAll('.numero').forEach(function (boton, posicion) {
         const activo = posicion === indice;
@@ -200,7 +209,7 @@
       boton.addEventListener('click', function () {
         seleccionarProyecto(indice);
       });
-      barra.appendChild(boton);
+      teclado.appendChild(boton);
     });
 
     ampliar.addEventListener('click', function () {

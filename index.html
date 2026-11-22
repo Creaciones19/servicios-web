@@ -1498,7 +1498,7 @@ section{ position:relative; }
     display: block;
     width: 100%;
     height: min(900px, 110vh);
-    min-height: 640px;
+    min-height: 0;
     border: 0;
 }
 
@@ -1987,6 +1987,15 @@ body > section:not(#portafolio-interactivo) .stat-label {
   color: #23162d !important;
 }
 
+
+/* El portafolio de escritorio se muestra directamente sobre el fondo. */
+@media (width > 700px) {
+  #portafolio-interactivo .portafolio-integrado {
+    background: transparent !important;
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
 
 /* AJUSTE RESPONSIVE EXCLUSIVO DEL PORTAFOLIO INTEGRADO.
    No modifica el diseño ni los proyectos del portafolio. */
@@ -2705,14 +2714,15 @@ body > section:not(#portafolio-interactivo) .stat-label {
      ============================================================ -->
 <section id="portafolio-interactivo" class="py-5" aria-labelledby="titulo-portafolio" style="background: #101a2a; color: #ffffff;">
     <div class="container-fluid px-3 px-lg-5">
-        <h2 id="titulo-portafolio" class="text-center mb-3">Portafolio interactivo</h2>
+        <h2 id="titulo-portafolio" class="text-center mb-3"></h2>
         <p class="text-center mb-4" style="color: #c9d2df;">
-            Explore algunos de nuestros proyectos web directamente desde esta página.
+           
         </p>
 
         <div class="portafolio-integrado">
             <iframe
                 src="indexportafolio.html"
+                scrolling="no"
                 title="Portafolio interactivo de proyectos web"
                 loading="lazy"
                 allow="fullscreen; autoplay; picture-in-picture"
@@ -2850,7 +2860,7 @@ body > section:not(#portafolio-interactivo) .stat-label {
       <div class="laptop">
         <div class="marco">
           <div class="pantalla">
-            <iframe id="visor" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="visor" scrolling="no" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
         <div class="teclado" aria-hidden="true"></div>
@@ -2958,7 +2968,50 @@ body > section:not(#portafolio-interactivo) .stat-label {
         }
     }
 
-    pantallaMovil.addEventListener('change', actualizarPortafolio);
+    let observarEscritorio;
+
+    function ajustarEscritorio() {
+        observarEscritorio?.disconnect();
+        if (pantallaMovil.matches) return;
+
+        const documento = marco.contentDocument;
+        const contenido = documento?.querySelector('main.contenedor');
+        if (!contenido) return;
+
+        contenido.querySelector('.pantalla iframe')?.setAttribute('scrolling', 'no');
+
+        const selector = contenido.querySelector('.zona > .barra-proyectos');
+        if (selector) {
+            const zona = selector.parentElement;
+            zona.style.display = 'block';
+            Object.assign(selector.style, {
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                maxHeight: 'none',
+                overflow: 'visible',
+                padding: '8px 3px'
+            });
+            zona.querySelector('.laptop')?.appendChild(selector);
+        }
+
+        function medir() {
+            const alto = Math.ceil(Math.max(
+                contenido.getBoundingClientRect().height,
+                contenido.scrollHeight
+            ));
+            marco.style.height = alto + 'px';
+        }
+        observarEscritorio = new ResizeObserver(medir);
+        observarEscritorio.observe(contenido);
+        medir();
+    }
+
+    marco.addEventListener('load', ajustarEscritorio);
+    pantallaMovil.addEventListener('change', () => {
+        observarEscritorio?.disconnect();
+        actualizarPortafolio();
+    });
     actualizarPortafolio();
 })();
 </script>
