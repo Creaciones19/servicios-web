@@ -116,6 +116,16 @@
     .encabezado h2 {
   color: #ffffff;
 }
+    @media (width > 700px) {
+      .pantalla.proyecto-09 iframe {
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: var(--ancho-proyecto-09, 1440px);
+        height: var(--alto-proyecto-09, 100%);
+        transform: scale(var(--escala-proyecto-09, 1));
+        transform-origin: top left;
+      }
+    }
   </style>
 </head>
 <body>
@@ -172,7 +182,24 @@
     let proyectoActual = 0;
 
     const pantalla = document.querySelector('.pantalla');
+    function ajustarProyecto09() {
+      const escritorio = window.innerWidth > 700;
+      const activo = escritorio && proyectoActual === 8;
+      visor.setAttribute('scrolling', escritorio ? 'auto' : 'no');
+      pantalla.classList.toggle('proyecto-09', activo);
+      if (activo) {
+        const ancho = Math.max(1440, pantalla.clientWidth);
+        const escala = pantalla.clientWidth / ancho || 1;
+        pantalla.style.setProperty('--ancho-proyecto-09', ancho + 'px');
+        pantalla.style.setProperty('--alto-proyecto-09', Math.ceil(pantalla.clientHeight / escala) + 'px');
+        pantalla.style.setProperty('--escala-proyecto-09', String(escala));
+      }
+    }
+
+    new ResizeObserver(ajustarProyecto09).observe(pantalla);
+
     function ajustarVistaProyecto() {
+      ajustarProyecto09();
       const usarEscritorio = window.innerWidth <= 700 && [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].includes(proyectoActual);
       pantalla.classList.toggle('vista-escritorio', usarEscritorio);
       if (usarEscritorio) {
@@ -186,11 +213,11 @@
     function seleccionarProyecto(indice) {
       proyectoActual = indice;
       const proyecto = proyectos[indice];
+      ajustarVistaProyecto();
       visor.src = proyecto.url;
       visor.title = proyecto.nombre;
-    
+
       abrirOriginal.href = proyecto.url;
-      ajustarVistaProyecto();a
 
       document.querySelectorAll('.numero').forEach(function (boton, posicion) {
         const activo = posicion === indice;

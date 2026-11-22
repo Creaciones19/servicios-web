@@ -1946,7 +1946,53 @@ body > section:not(#portafolio-interactivo) .stat-label {
 #contacto .form-control-lg { padding:8px 12px; font-size:1rem; }
 #contacto .mb-3 { margin-bottom:10px!important; }
 #contacto textarea { min-height:68px; }
-#contacto .map-embed { max-height:190px; }
+#contacto .contact-list a { color: #fff; overflow-wrap: anywhere; }
+@media (min-width: 992px) {
+  #contacto .contact-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+@media (width < 992px) {
+  #contacto .contact-list {
+    display: grid;
+    gap: 8px;
+    font-size: .9rem;
+    line-height: 1.35;
+  }
+
+  #contacto .contact-list li {
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+  }
+
+  #contacto .contact-list .icon-badge {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  #blog .row > .col-lg-6.text-center {
+    width: 100%;
+    padding-inline: 0;
+  }
+
+  #blog .blog-img {
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  #blog #animacionVideo > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-inline: auto;
+  }
+}
+
 #blog .blog-mas[hidden] { display:none!important; }
 
 
@@ -2860,7 +2906,7 @@ body > section:not(#portafolio-interactivo) .stat-label {
       <div class="laptop">
         <div class="marco">
           <div class="pantalla">
-            <iframe id="visor" scrolling="no" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="visor" title="Proyecto seleccionado" src="https://creaciones19.github.io/catalogo-remates-bancariosbb/indexcatalogo.html" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
         <div class="teclado" aria-hidden="true"></div>
@@ -2978,7 +3024,7 @@ body > section:not(#portafolio-interactivo) .stat-label {
         const contenido = documento?.querySelector('main.contenedor');
         if (!contenido) return;
 
-        contenido.querySelector('.pantalla iframe')?.setAttribute('scrolling', 'no');
+        contenido.querySelector('.pantalla iframe')?.removeAttribute('scrolling');
 
         const selector = contenido.querySelector('.zona > .barra-proyectos');
         if (selector) {
@@ -3827,7 +3873,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <!-- Formulario -->
 
-      <div class="col-lg-5">
+      <div class="col-lg-6">
 
         <div class="card contact-card h-100">
 
@@ -3857,7 +3903,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <label class="form-label" for="c-mensaje">Tu mensaje</label>
 
-                <textarea id="c-mensaje" class="form-control form-control-lg" rows="4" placeholder="Cuéntanos qué necesitas…"></textarea>
+                <textarea id="c-mensaje" class="form-control form-control-lg" rows="3" placeholder="Cuéntanos qué necesitas…"></textarea>
 
               </div>
 
@@ -3879,7 +3925,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <!-- Datos + Mapa -->
 
-      <div class="col-lg-7">
+      <div class="col-lg-6">
 
   <div class="card h-100">
 
@@ -3889,7 +3935,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-      <ul class="list-unstyled contact-list mb-4">
+      <ul class="list-unstyled contact-list mb-0">
 
         <li>
 
@@ -3951,29 +3997,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-      <!-- Mapa -->
-
-      <div class="ratio ratio-16x9 mt-auto">
-
-        <iframe
-
-          class="map-embed rounded"
-
-          src=""
-
-          allowfullscreen=""
-
-          loading="lazy"
-
-          referrerpolicy="no-referrer-when-downgrade">
-
-        </iframe>
-
-            </div>
-
-
-
-          </div>
+</div>
 
         </div>
 
